@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 export const getAllDoctors = async (req, res) => {
     try {
         const allDoctors = await Doctor.find().select(
-            "name speciality startTime avgConsultTime fee"
+            "name speciality startTime avgConsultTime fee phone email"
         );
 
         // Optional: handle empty list
@@ -34,9 +34,9 @@ export const getAllDoctors = async (req, res) => {
 };
 export const createDoctor = async (req, res) => {
     try {
-        const { name, speciality, startTime, avgConsultTime, fee } = req.body;
+        const { name, phone, email, password, speciality, startTime, avgConsultTime, fee } = req.body;
 
-        if (!name || !speciality || !fee) {
+        if (!name || !speciality || !fee || !email || !password || !phone) {
             return res.status(400).json({
                 success: false,
                 message: "Required fields missing"
@@ -45,6 +45,9 @@ export const createDoctor = async (req, res) => {
 
         const doctor = await Doctor.create({
             name,
+            phone,
+            email,
+            password,
             speciality,
             startTime,
             avgConsultTime,

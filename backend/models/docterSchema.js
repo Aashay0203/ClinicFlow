@@ -3,10 +3,21 @@ import mongoose from "mongoose";
 
 const DocterSchema = new mongoose.Schema({
     name: { type: String, required: true },
-
-    speciality: {
+    phone: {
+        type: Number,
+        required: true,
+    },
+    email: {
         type: String,
         required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    speciality: {
+        type: String,
+        default: "Gernal Physician",
     },
     startTime: {
         type: String,
@@ -18,7 +29,7 @@ const DocterSchema = new mongoose.Schema({
     },
     fee: {
         type: Number,
-        required: true,
+        default: 500,
     },
 })
 

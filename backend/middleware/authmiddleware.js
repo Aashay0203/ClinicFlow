@@ -13,7 +13,7 @@ const protect = (req, res, next) => {
     }
     //console.log(token);
     if (!token) {
-        return res.status(401).json({ message: "Not authorized, no token" });
+        return res.status(401).json({ message: "You are not Authorised or Token Not Found" });
     }
 
     try {
