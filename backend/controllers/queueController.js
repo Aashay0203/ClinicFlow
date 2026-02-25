@@ -8,20 +8,22 @@ import Appointment from "../models/appointmentSchema.js";
  */
 export const moveQueueNext = async (req, res) => {
     try {
-        const { doctorId } = req.params;
+        // 🌟 1. Use the secure ID from the JWT token, ignoring the URL parameter!
+        const doctorId = req.user.id;
 
         if (!mongoose.Types.ObjectId.isValid(doctorId)) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid doctor ID"
+                message: "Invalid doctor ID in token"
             });
         }
 
-        // Find today's queue for this doctor
+        // 🌟 2. Find today's queue for this doctor
         const today = new Date();
         today.setUTCHours(0, 0, 0, 0);
 
-        const queue = await Queue.findOne({ doctorId, date: today });
+        const queue = await Queue.findOne({ doctorId: doctorId, date: today });
+
         if (!queue) {
             return res.status(404).json({
                 success: false,

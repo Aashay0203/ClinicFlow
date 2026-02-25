@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Only doctor/admin can move queue
 router.put(
-    "/:doctorId/next",
+    "/next",
     protect,
     roleMiddleware("doctor"),
     moveQueueNext

@@ -8,7 +8,7 @@ const queueSchema = new mongoose.Schema(
             required: true,
         },
         date: {
-            type: String, // YYYY-MM-DD
+            type: Date, // YYYY-MM-DD
             required: true,
         },
         currentNumber: {

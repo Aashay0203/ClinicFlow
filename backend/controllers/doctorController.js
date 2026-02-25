@@ -32,37 +32,3 @@ export const getAllDoctors = async (req, res) => {
         });
     }
 };
-export const createDoctor = async (req, res) => {
-    try {
-        const { name, phone, email, password, speciality, startTime, avgConsultTime, fee } = req.body;
-
-        if (!name || !speciality || !fee || !email || !password || !phone) {
-            return res.status(400).json({
-                success: false,
-                message: "Required fields missing"
-            });
-        }
-
-        const doctor = await Doctor.create({
-            name,
-            phone,
-            email,
-            password,
-            speciality,
-            startTime,
-            avgConsultTime,
-            fee
-        });
-
-        res.status(201).json({
-            success: true,
-            doctor
-        });
-    } catch (error) {
-        console.error("Create doctor error:", error);
-        res.status(500).json({
-            success: false,
-            message: "Failed to create doctor"
-        });
-    }
-};

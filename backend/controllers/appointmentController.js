@@ -108,13 +108,20 @@ export const getAppointmentStatus = async (req, res) => {
                 message: "Doctor not found"
             });
         }
-
         // 5️⃣ Fetch queue (create if missing)
-        let queue = await Queue.findOne({ doctorId: doctor._id });
+        // Ensure the date is a proper UTC midnight Date object
+        const normalizedDate = new Date(appointment.date);
+        normalizedDate.setUTCHours(0, 0, 0, 0);
+
+        let queue = await Queue.findOne({
+            doctorId: doctor._id,
+            date: normalizedDate // Filter by date so we don't grab yesterday's queue!
+        });
+
         if (!queue) {
             queue = await Queue.create({
                 doctorId: doctor._id,
-                date: appointment.date,
+                date: normalizedDate, // Force it to save as a Date object
                 currentNumber: 0
             });
         }
