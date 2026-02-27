@@ -3,8 +3,15 @@ import Appointment from "../models/appointmentSchema.js";
 import Queue from "../models/queueSchema.js";
 import { calculateETA } from "../utils/calculateETA.js";
 import Doctor from "../models/docterSchema.js";
-import Counter from "../models/counterSchema.js";
 import mongoose from "mongoose";
+import Razorpay from "razorpay";
+
+// 1. Initialize the machine at the top of the file
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
 export const appointmentBook = async (req, res) => {
     try {
         const patientId = req.user.id; // from JWT
@@ -21,7 +28,7 @@ export const appointmentBook = async (req, res) => {
         const appointmentDate = new Date(date);
         appointmentDate.setUTCHours(0, 0, 0, 0);
 
-        // ❌ Prevent double booking (same patient, same doctor, same date)
+        // 1. ❌ Prevent double booking (KEEP THIS!)
         const existing = await Appointment.findOne({
             patientId,
             doctorId,
@@ -35,34 +42,21 @@ export const appointmentBook = async (req, res) => {
             });
         }
 
-        // 🔢 Atomic appointment number
-        const counter = await Counter.findOneAndUpdate(
-            { doctorId, date: appointmentDate },
-            { $inc: { seq: 1 } },
-            { upsert: true, returnDocument: "after" }
-        );
+        // 2. 💸 Create the Razorpay Order (NEW!)
+        // Let's assume the fee is 500 INR. (Amount is in paise, so 500 * 100)
+        const options = {
+            amount: 500 * 100,
+            currency: "INR",
+            receipt: `rcpt_${Date.now()}`,
+        };
 
-        const appointmentNumber = counter.seq;
+        const order = await razorpay.orders.create(options);
 
-        // 🔐 Generate 4-digit PIN
-        const rawPin = Math.floor(1000 + Math.random() * 9000).toString();
-        const pinHash = await bcrypt.hash(rawPin, 10);
-
-        // 💾 Save appointment
-        const appointment = await Appointment.create({
-            patientId,
-            doctorId,
-            date: appointmentDate,
-            slotTime,
-            appointmentNumber,
-            pinHash
-        });
-
-        return res.status(201).json({
+        // 3. Send the order back to the frontend so the popup can open
+        return res.status(200).json({
             success: true,
-            appointmentId: appointment._id,
-            appointmentNumber,
-            pin: rawPin // returned ONCE
+            message: "Slot is available, please complete payment",
+            order: order // Frontend needs this to open Razorpay
         });
 
     } catch (err) {
