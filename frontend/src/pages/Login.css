@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+/* ── Design tokens from brand images ── */
+:root {
+    --bg: #e8ecee;
+    --card-bg: #ffffff;
+    --blue: #3e7df5;
+    --blue-dark: #2d62d4;
+    --blue-light: #dce9ff;
+    --green: #d5eab3;
+    --black: #010101;
+    --text-muted: #7a8799;
+    --border: #dde3ea;
+    --error-bg: #fff0f0;
+    --error-text: #d94f4f;
+    --radius-card: 24px;
+    --radius-input: 12px;
+    --radius-btn: 14px;
+    --shadow-card: 0 12px 48px rgba(62, 125, 245, 0.10),
+        0 2px 8px rgba(0, 0, 0, 0.06);
+    --font: "Nunito", sans-serif;
+    --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Full-page container ── */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+
+    /* soft radial blobs matching the brand palette */
+    background-image:
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(213, 234, 179, 0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 45% at 85% 80%, rgba(62, 125, 245, 0.13) 0%, transparent 70%);
+
+    padding: 24px;
+    font-family: var(--font);
+}
+
+/* ── Card ── */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 48px 44px 40px;
+    width: 100%;
+    max-width: 420px;
+
+    /* subtle entry animation */
+    animation: cardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Header ── */
+.header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: var(--blue-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(62, 125, 245, 0.18);
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+}
+
+/* ── Error banner ── */
+.error {
+    background: var(--error-bg);
+    color: var(--error-text);
+    border-radius: var(--radius-input);
+    padding: 11px 16px;
+    font-size: 13.5px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border: 1px solid rgba(217, 79, 79, 0.18);
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    75% {
+        transform: translateX(6px);
+    }
+}
+
+/* ── Input group ── */
+.inputGroup {
+    margin-bottom: 18px;
+}
+
+.label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 7px;
+    letter-spacing: 0.02em;
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-input);
+    background: #f6f8fa;
+    font-family: var(--font);
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--black);
+    outline: none;
+    transition: border-color var(--transition), background var(--transition),
+        box-shadow var(--transition);
+}
+
+.input::placeholder {
+    color: #b2bcc8;
+}
+
+.input:focus {
+    border-color: var(--blue);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(62, 125, 245, 0.12);
+}
+
+/* ── Primary button ── */
+.btn {
+    width: 100%;
+    height: 52px;
+    margin-top: 8px;
+    border: none;
+    border-radius: var(--radius-btn);
+    background: var(--blue);
+    color: #ffffff;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition),
+        box-shadow var(--transition);
+    box-shadow: 0 6px 20px rgba(62, 125, 245, 0.35);
+}
+
+.btn:hover:not(:disabled) {
+    background: var(--blue-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(62, 125, 245, 0.42);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px rgba(62, 125, 245, 0.28);
+}
+
+.btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* ── Footer link ── */
+.linkText {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+}
+
+.link {
+    color: var(--blue);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.link:hover {
+    color: var(--blue-dark);
+    text-decoration: underline;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+    .card {
+        padding: 36px 28px 32px;
+    }
+}
