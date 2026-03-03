@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import instance from "../api/axios";
+import DoctorCard from "../components/DoctorCard"; // <-- ADD THIS IMPORT
 import "./DoctorList.css";
 
 export default function DoctorList() {
@@ -17,9 +18,8 @@ export default function DoctorList() {
 
   const fetchDoctors = async () => {
     try {
-      // Adjust this endpoint based on your backend routes
       const res = await instance.get("/doctor/allDoctors");
-      setDoctors(res.data.doctors || res.data); // Adjust based on your API response structure
+      setDoctors(res.data.allDoctors || res.data);
     } catch (err) {
       setError("Failed to load doctors. Please try again later.");
     } finally {
@@ -27,7 +27,6 @@ export default function DoctorList() {
     }
   };
 
-  // Filter doctors based on search input (name or speciality)
   const filteredDoctors = doctors.filter(
     (doc) =>
       doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -37,9 +36,6 @@ export default function DoctorList() {
   return (
     <div className="list-container">
       <div className="list-header">
-        <h2>Find a Doctor</h2>
-        <p>Select a specialist to book your appointment</p>
-
         <input
           type="text"
           className="search-bar"
@@ -57,23 +53,12 @@ export default function DoctorList() {
         <div className="doctor-grid">
           {filteredDoctors.length > 0 ? (
             filteredDoctors.map((doctor) => (
-              <div key={doctor._id} className="doctor-card">
-                <div className="doc-avatar">👨‍⚕️</div>
-                <div className="doc-info">
-                  <h3 className="doc-name">Dr. {doctor.name}</h3>
-                  <p className="doc-speciality">{doctor.speciality}</p>
-                  <div className="doc-details">
-                    <span>⏱ {doctor.avgConsultTime} min consult</span>
-                    <span>₹{doctor.fees}</span>
-                  </div>
-                </div>
-                <button
-                  className="book-btn"
-                  onClick={() => navigate(`/booking/${doctor._id}`)}
-                >
-                  Book Appointment
-                </button>
-              </div>
+              // Use the new DoctorCard component here!
+              <DoctorCard
+                key={doctor._id}
+                doctor={doctor}
+                onBook={() => navigate(`/booking/${doctor._id}`)}
+              />
             ))
           ) : (
             <div className="no-results">

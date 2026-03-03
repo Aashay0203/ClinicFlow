@@ -36,7 +36,7 @@ export default function DoctorSignup() {
       });
       const { token, user } = res.data;
       login(user, token);
-      navigate("/dashboard");
+      navigate("/doctorList"); //ek route se dusre route par jane ke liye
     } catch (err) {
       setError(err.response?.data?.message || "SignUp Failed");
     } finally {

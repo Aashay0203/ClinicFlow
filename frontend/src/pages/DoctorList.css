@@ -1,3 +1,4 @@
+/* Base Container Setup */
 .list-container {
     min-height: 100vh;
     background-color: #f3f4f6;
@@ -5,10 +6,14 @@
     font-family: 'Inter', system-ui, sans-serif;
 }
 
+/* Header and Search Area */
 .list-header {
-    max-width: 1000px;
+
+    max-width: 1200px;
+    /* Widened slightly to fit the new cards better */
     margin: 0 auto 2rem auto;
     text-align: center;
+
 }
 
 .list-header h2 {
@@ -40,8 +45,9 @@
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
+/* State Handlers (Errors, Loading, Empty) */
 .error-banner {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto 1rem auto;
     background-color: #fee2e2;
     color: #dc2626;
@@ -58,83 +64,16 @@
     margin-top: 3rem;
 }
 
-/* Grid Layout for Cards */
+/* Grid Layout for the New Premium Cards */
 .doctor-grid {
-    max-width: 1000px;
+    max-width: 1200px;
+    /* Increased to allow 3 cards comfortably on big screens */
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-/* Individual Doctor Card */
-.doctor-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.doctor-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.doc-avatar {
-    font-size: 3rem;
-    background: #eef2ff;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
-
-.doc-info {
-    flex-grow: 1;
-}
-
-.doc-name {
-    font-size: 1.25rem;
-    color: #111827;
-    margin: 0 0 0.25rem 0;
-}
-
-.doc-speciality {
-    color: #2563eb;
-    font-weight: 500;
-    font-size: 0.9rem;
-    margin: 0 0 1rem 0;
-}
-
-.doc-details {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: #4b5563;
-    background: #f9fafb;
-    padding: 0.75rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-.book-btn {
-    width: 100%;
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 0.75rem;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.book-btn:hover {
-    background-color: #1d4ed8;
+    /* Adjusted min-width to 350px so the new premium cards don't squish */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    /* Increased gap to give the floating shadows room to breathe */
+    justify-items: center;
+    /* Centers the cards if the grid isn't perfectly full */
 }
