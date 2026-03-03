@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 import instance from "../api/axios";
-import "./Login.css";
+import "./DoctorSignUp.css";
 
-export default function Signup() {
+export default function DoctorSignup() {
   const [name, setName] = useState("");
+  const [speciality, setSpeciality] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [fees, setFees] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -22,11 +25,14 @@ export default function Signup() {
     setError("");
     setLoading(true);
     try {
-      const res = await instance.post("/auth/signup", {
+      const res = await instance.post("/doctor/signup", {
         email,
         phone,
         password,
         name,
+        speciality,
+        startTime,
+        fees,
       });
       const { token, user } = res.data;
       login(user, token);
@@ -87,6 +93,39 @@ export default function Signup() {
         </div>
 
         <div className="inputGroup">
+          <label className="label">Speciality</label>
+          <input
+            className="input"
+            type="text"
+            placeholder="Orthopedic, Cardiologist ..."
+            value={speciality}
+            onChange={(e) => setSpeciality(e.target.value)}
+          />
+        </div>
+
+        <div className="inputGroup">
+          <label className="label">StartTime</label>
+          <input
+            className="input"
+            type="text"
+            placeholder="9:00 A.M"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+          />
+        </div>
+
+        <div className="inputGroup">
+          <label className="label">Fees</label>
+          <input
+            className="input"
+            type="number"
+            placeholder="Enter Your Fees"
+            value={fees}
+            onChange={(e) => setFees(e.target.value)}
+          />
+        </div>
+
+        <div className="inputGroup">
           <label className="label">Password</label>
           <input
             className="input"
@@ -107,13 +146,6 @@ export default function Signup() {
           Have an account?{" "}
           <Link to="/login" className="link">
             Sign In
-          </Link>
-        </p>
-        {/* Link to Doctor Signup */}
-        <p className="linkText">
-          Are you a Doctor?{" "}
-          <Link to="/doctorSignup" className="link">
-            Sign Up Here
           </Link>
         </p>
       </div>

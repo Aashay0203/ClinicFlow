@@ -1,0 +1,140 @@
+.list-container {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    padding: 2rem;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.list-header {
+    max-width: 1000px;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+}
+
+.list-header h2 {
+    color: #111827;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.list-header p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 50px;
+    /* Pill shape for search */
+    font-size: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.error-banner {
+    max-width: 1000px;
+    margin: 0 auto 1rem auto;
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.loading-state,
+.no-results {
+    text-align: center;
+    color: #6b7280;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+}
+
+/* Grid Layout for Cards */
+.doctor-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual Doctor Card */
+.doctor-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.doc-avatar {
+    font-size: 3rem;
+    background: #eef2ff;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.doc-info {
+    flex-grow: 1;
+}
+
+.doc-name {
+    font-size: 1.25rem;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+}
+
+.doc-speciality {
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+}
+
+.doc-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #4b5563;
+    background: #f9fafb;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.book-btn {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.book-btn:hover {
+    background-color: #1d4ed8;
+}

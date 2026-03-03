@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -6,15 +6,26 @@
   padding: 0;
 }
 
+/* ── Design tokens from brand images ── */
 :root {
-  --primary: #3E7DF5;
-  --accent-green: #D5EAB3;
-  --bg: #E8EDF2;
-  --white: #FFFFFF;
-  --text: #010101;
-  --text-muted: #8899aa;
-  --input-bg: #F4F7FC;
-  --input-border: #E2EAF4;
+  --bg: #e8ecee;
+  --card-bg: #ffffff;
+  --blue: #3e7df5;
+  --blue-dark: #2d62d4;
+  --blue-light: #dce9ff;
+  --green: #d5eab3;
+  --black: #010101;
+  --text-muted: #7a8799;
+  --border: #dde3ea;
+  --error-bg: #fff0f0;
+  --error-text: #d94f4f;
+  --radius-card: 24px;
+  --radius-input: 12px;
+  --radius-btn: 14px;
+  --shadow-card: 0 12px 48px rgba(62, 125, 245, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  --font: "Nunito", sans-serif;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {

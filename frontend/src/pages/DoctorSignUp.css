@@ -31,7 +31,7 @@
     box-shadow: var(--shadow-card);
     padding: 48px 44px 40px;
     width: 100%;
-    max-width: 420px;
+    max-width: 700px;
 
     /* subtle entry animation */
     animation: cardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
