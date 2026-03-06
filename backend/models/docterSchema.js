@@ -27,7 +27,7 @@ const DocterSchema = new mongoose.Schema({
         type: Number,
         default: 10,
     },
-    fee: {
+    fees: {
         type: Number,
         default: 500,
     },

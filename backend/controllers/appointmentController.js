@@ -213,3 +213,43 @@ export const markAppointmentArrived = async (req, res) => {
         });
     }
 };
+
+// Add this new export function
+
+export const getBookedSlots = async (req, res) => {
+    try {
+        const { doctorId, date } = req.query;
+
+        if (!doctorId || !date) {
+            return res.status(400).json({
+                success: false,
+                message: "doctorId and date are required"
+            });
+        }
+
+        // Normalize date to UTC midnight for consistent querying
+        const appointmentDate = new Date(date);
+        appointmentDate.setUTCHours(0, 0, 0, 0);
+
+        // Find all booked appointments for this doctor on this date
+        const bookedAppointments = await Appointment.find({
+            doctorId,
+            date: appointmentDate,
+            paymentStatus: "paid" // Only count paid appointments as "booked"
+        }).select("slotTime");
+
+        const bookedSlots = bookedAppointments.map(apt => apt.slotTime);
+
+        return res.status(200).json({
+            success: true,
+            bookedSlots
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch booked slots"
+        });
+    }
+};
