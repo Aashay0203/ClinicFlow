@@ -140,10 +140,6 @@
     /* Very soft shadow */
 }
 
-.rating-card {
-    /* Special styling for rating based on star visual */
-}
-
 .rating-value-group {
     display: flex;
     align-items: center;
