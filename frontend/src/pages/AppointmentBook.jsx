@@ -10,11 +10,8 @@ import {
   CalendarIcon,
 } from "../components/TimeIcon";
 
-// ─────────────────────────────────────────────────────────────
 // CONSTANTS
-// ─────────────────────────────────────────────────────────────
 const DAYS_PER_PAGE = 7;
-const MAX_DAYS_AHEAD = 7; // How many calendar days ahead to look
 
 /**
  * ACTIVE_DAYS — controls which weekdays are bookable.
@@ -27,77 +24,7 @@ const MAX_DAYS_AHEAD = 7; // How many calendar days ahead to look
  */
 const ACTIVE_DAYS = [1, 2, 3, 4, 5, 6]; // Mon–Sat, Sundays excluded
 
-const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const MONTH_LABELS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-const { generateTimeSlots } = timeUtils;
-
-// ─────────────────────────────────────────────────────────────
-// HELPERS
-// ─────────────────────────────────────────────────────────────
-
-/**
- * Returns all active (bookable) days within the next MAX_DAYS_AHEAD
- * calendar days, filtered by ACTIVE_DAYS.
- *
- * @param {number[]} activeDays - array of weekday numbers (0–6) that are bookable
- * @returns {Array<{ date: Date, isoDate: string, day: number, month: string, year: number, weekday: string }>}
- */
-function getAllActiveDates(activeDays) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const result = [];
-  for (let i = 0; i < MAX_DAYS_AHEAD; i++) {
-    const cursor = new Date(today);
-    cursor.setDate(today.getDate() + i);
-
-    if (activeDays.includes(cursor.getDay())) {
-      result.push({
-        date: new Date(cursor), // real Date object — safe for comparisons
-        isoDate: cursor.toISOString().split("T")[0],
-        day: cursor.getDate(),
-        month: MONTH_LABELS[cursor.getMonth()],
-        year: cursor.getFullYear(),
-        weekday: WEEKDAY_LABELS[cursor.getDay()],
-      });
-    }
-  }
-  return result;
-}
-
-/**
- * Returns true if a slot (24hr "HH:MM") has already passed today.
- * Always returns false for future dates.
- */
-function isSlotInPast(slotValue, selectedDateIso) {
-  const now = new Date();
-  const todayIso = now.toISOString().split("T")[0];
-  if (selectedDateIso !== todayIso) return false;
-
-  const [h, m] = slotValue.split(":").map(Number);
-  const slotMinutes = h * 60 + m;
-  const nowMinutes = now.getHours() * 60 + now.getMinutes();
-  return slotMinutes <= nowMinutes;
-}
-
-// ─────────────────────────────────────────────────────────────
-// COMPONENT
-// ─────────────────────────────────────────────────────────────
-
+const { generateTimeSlots, isSlotInPast, getAllActiveDates } = timeUtils;
 /**
  * SlotSelection
  *

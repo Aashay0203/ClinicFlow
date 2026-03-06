@@ -1,3 +1,23 @@
+// CONSTANTS
+
+const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTH_LABELS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+const MAX_DAYS_AHEAD = 7; // How many calendar days ahead to look
+
 /** Convert "09:00 AM" / "14:30" → total minutes from midnight */
 function parseTimeToMinutes(timeStr) {
   if (!timeStr) return 9 * 60; // default 9 AM
@@ -90,10 +110,57 @@ function buildDateWindow(startOffset, count = 7) {
   return result;
 }
 
+/**
+ * Returns true if a slot (24hr "HH:MM") has already passed today.
+ * Always returns false for future dates.
+ */
+function isSlotInPast(slotValue, selectedDateIso) {
+  const now = new Date();
+  const todayIso = now.toISOString().split("T")[0];
+  if (selectedDateIso !== todayIso) return false;
+
+  const [h, m] = slotValue.split(":").map(Number);
+  const slotMinutes = h * 60 + m;
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  return slotMinutes <= nowMinutes;
+}
+
+/**
+ * Returns all active (bookable) days within the next MAX_DAYS_AHEAD
+ * calendar days, filtered by ACTIVE_DAYS.
+ *
+ * @param {number[]} activeDays - array of weekday numbers (0–6) that are bookable
+ * @returns {Array<{ date: Date, isoDate: string, day: number, month: string, year: number, weekday: string }>}
+ */
+function getAllActiveDates(activeDays) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const result = [];
+  for (let i = 0; i < MAX_DAYS_AHEAD; i++) {
+    const cursor = new Date(today);
+    cursor.setDate(today.getDate() + i);
+
+    if (activeDays.includes(cursor.getDay())) {
+      result.push({
+        date: new Date(cursor), // real Date object — safe for comparisons
+        isoDate: cursor.toISOString().split("T")[0],
+        day: cursor.getDate(),
+        month: MONTH_LABELS[cursor.getMonth()],
+        year: cursor.getFullYear(),
+        weekday: WEEKDAY_LABELS[cursor.getDay()],
+      });
+    }
+  }
+  return result;
+}
+
 export default {
   parseTimeToMinutes,
   formatMinutesToDisplay,
   formatMinutesTo24hr,
   generateTimeSlots,
   buildDateWindow,
+  isSlotInPast,
+  getAllActiveDates,
 };
