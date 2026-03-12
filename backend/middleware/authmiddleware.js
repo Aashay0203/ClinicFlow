@@ -22,6 +22,7 @@ const protect = (req, res, next) => {
         req.user = { id: decoded.userId, role: decoded.role, email: decoded.email };
         next();
     } catch (err) {
+        console.log(err);
         return res.status(401).json({ message: "Invalid token" });
     }
 };

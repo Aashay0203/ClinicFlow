@@ -5,6 +5,8 @@ import Signup from "./pages/Signup";
 import DoctorSignup from "./pages/DoctorSignUp";
 import DoctorList from "./pages/DoctorList";
 import SlotSelection from "./pages/AppointmentBook";
+import Payment from "./pages/Payment.jsx";
+//import MyAppointment from "./pages/MyAppointment.jsx";
 
 export default function App() {
   return (
@@ -17,6 +19,7 @@ export default function App() {
           <Route path="/doctorSignup" element={<DoctorSignup />} />
           <Route path="/doctorList" element={<DoctorList />} />
           <Route path="/booking/:doctorId" element={<SlotSelection />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

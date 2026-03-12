@@ -42,10 +42,11 @@ export const appointmentBook = async (req, res) => {
             });
         }
 
+        const doctor = await Doctor.findById(doctorId);
         // 2. 💸 Create the Razorpay Order (NEW!)
         // Let's assume the fee is 500 INR. (Amount is in paise, so 500 * 100)
         const options = {
-            amount: 500 * 100,
+            amount: doctor.fees * 100,
             currency: "INR",
             receipt: `rcpt_${Date.now()}`,
         };

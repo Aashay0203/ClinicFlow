@@ -8,7 +8,7 @@ import {
   ArrowRightIcon,
   ClockIcon,
   CalendarIcon,
-} from "../components/TimeIcon";
+} from "../components/Icon";
 
 // CONSTANTS
 const DAYS_PER_PAGE = 7;
@@ -143,10 +143,12 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
   // ─────────────────────────────────────────────────────────
 
   const handlePrevWeek = () => {
+    //not used in this page now
     setWindowOffset((prev) => Math.max(0, prev - DAYS_PER_PAGE));
   };
 
   const handleNextWeek = () => {
+    //not used in this page now
     setWindowOffset((prev) =>
       Math.min(allActiveDates.length - DAYS_PER_PAGE, prev + DAYS_PER_PAGE),
     );
@@ -173,7 +175,8 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
 
       navigate("/payment", {
         state: {
-          appointmentDetails: res.data,
+          appointmentDetails: res.data.order,
+          appointmentData: payload, // Pass the appointment data to the next page
           doctorName: doctor?.name,
           dateDisplay: `${selectedDate.day} ${selectedDate.month} ${selectedDate.year}`,
           timeDisplay:
@@ -196,7 +199,7 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
   // DERIVED STATE
   // ─────────────────────────────────────────────────────────
 
-  const isSlotBooked = (slotValue) => bookedSlots.includes(slotValue);
+  const isSlotBooked = (slotValue) => bookedSlots.includes(slotValue); //this help to disable thode slots which already booked
 
   // Safe past-date check — uses the real Date object, not a string comparison
   const isPastDate =
@@ -304,7 +307,9 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
 
           {/* Date picker row with prev / next */}
           <div className="date-nav-row">
-            <button
+            {
+              //dont want to use these functionality now
+              /* <button
               className={`week-nav-btn ${!canGoPrev ? "disabled" : ""}`}
               onClick={handlePrevWeek}
               disabled={!canGoPrev}
@@ -312,7 +317,8 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
             >
               <ArrowLeftIcon />
             </button>
-
+            */
+            }
             <div className="date-picker-horizontal">
               {dateWindow.map((item, index) => {
                 const isToday =
@@ -334,14 +340,17 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
               })}
             </div>
 
-            <button
+            {
+              //dont use these functionality now
+              /* <button
               className={`week-nav-btn ${!canGoNext ? "disabled" : ""}`}
               onClick={handleNextWeek}
               disabled={!canGoNext}
               aria-label="Next week"
             >
               <ArrowRightIcon />
-            </button>
+            </button> */
+            }
           </div>
         </div>
 

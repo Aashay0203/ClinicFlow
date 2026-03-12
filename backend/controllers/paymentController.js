@@ -72,3 +72,114 @@ export const verifyPayment = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
+export const upiConfirm = async (req, res) => {
+    try {
+        const { orderId, appointmentData } = req.body;
+        console.log(orderId, "in paymentController");
+        if (!appointmentData) {
+            return res.status(400).json({ success: false, message: "Appointment data is required" });
+        }
+
+        /* const payments = await razorpay.orders.fetchPayments(orderId);
+        console.log(payments); // ADD THIS
+        const successfulPayment = payments.items.find(
+            p => p.status === 'captured' || p.status === 'authorized'
+        );
+        if (!successfulPayment) {
+            return res.status(400).json({ success: false, message: "Payment not verified yet." });
+        }
+
+ */
+        // 1. Generate Atomic Appointment Number
+        const queue = await Queue.findOneAndUpdate(
+            { doctorId: appointmentData.doctorId, date: appointmentData.date },
+            { $inc: { lastTokenNumber: 1 } },
+            { upsert: true, new: true }
+        );
+
+        const appointmentNumber = queue.lastTokenNumber;
+
+        // 2. Generate 4-digit PIN & Hash it
+        const rawPin = Math.floor(1000 + Math.random() * 9000).toString();
+        const salt = await bcrypt.genSalt(10);
+        const pinHash = await bcrypt.hash(rawPin, salt);
+
+        const patientId = req.user.id; // Grabs the ID of the person logged in
+
+        // 3. Create Final Appointment
+        const appointment = new Appointment({
+            ...appointmentData,
+            appointmentNumber,
+            patientId,
+            pinHash,
+            paymentStatus: "paid", // Assuming user paid via QR
+            paymentMethod: "UPI",
+            razorpayOrderId: orderId
+        });
+
+        await appointment.save();
+
+        // 4. Send success response
+        res.status(200).json({
+            success: true,
+            message: "Appointment Confirmed via UPI",
+            appointmentNumber,
+            rawPin
+        });
+
+    } catch (error) {
+        console.error("UPI Confirm Error:", error);
+        res.status(500).json({ success: false, message: "Failed to confirm appointment" });
+    }
+};
+
+export const cashConfirm = async (req, res) => {
+    try {
+        const { appointmentData } = req.body;
+
+        if (!appointmentData) {
+            return res.status(400).json({ success: false, message: "Appointment data is required" });
+        }
+
+        // 1. Generate Atomic Appointment Number
+        const queue = await Queue.findOneAndUpdate(
+            { doctorId: appointmentData.doctorId, date: appointmentData.date },
+            { $inc: { lastTokenNumber: 1 } },
+            { upsert: true, new: true }
+        );
+
+        const appointmentNumber = queue.lastTokenNumber;
+
+        // 2. Generate 4-digit PIN & Hash it
+        const rawPin = Math.floor(1000 + Math.random() * 9000).toString();
+        const salt = await bcrypt.genSalt(10);
+        const pinHash = await bcrypt.hash(rawPin, salt);
+
+        const patientId = req.user.id;
+
+        // 3. Create Final Appointment
+        const appointment = new Appointment({
+            ...appointmentData,
+            appointmentNumber,
+            patientId,
+            pinHash,
+            // We mark as 'paid' to ensure the slot is blocked in getBookedSlots(),
+            // even though payment will be collected at the clinic.
+            paymentStatus: "paid",
+            paymentMethod: "Cash"
+        });
+
+        await appointment.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Appointment Confirmed",
+            appointmentNumber,
+            rawPin
+        });
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
