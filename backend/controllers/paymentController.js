@@ -31,10 +31,14 @@ export const verifyPayment = async (req, res) => {
             return res.status(400).json({ success: false, message: "Invalid payment signature" });
         }
 
+        // Normalize date to UTC midnight to exactly match getBookedSlots query
+        const normalizedDate = new Date(appointmentData.date);
+        normalizedDate.setUTCHours(0, 0, 0, 0);
+
         // 2. Generate Atomic Appointment Number
         // Find or create queue for doctor on that date
         const queue = await Queue.findOneAndUpdate(
-            { doctorId: appointmentData.doctorId, date: appointmentData.date },
+            { doctorId: appointmentData.doctorId, date: normalizedDate },
             { $inc: { lastTokenNumber: 1 } },
             { upsert: true, new: true }
         );
@@ -50,6 +54,7 @@ export const verifyPayment = async (req, res) => {
         // 4. Create Final Appointment
         const appointment = new Appointment({
             ...appointmentData,
+            date: normalizedDate, // 🌟 Override date with strict UTC midnight
             appointmentNumber,
             patientId,
             pinHash,
@@ -91,9 +96,13 @@ export const upiConfirm = async (req, res) => {
         }
 
  */
+        // Normalize date to UTC midnight
+        const normalizedDate = new Date(appointmentData.date);
+        normalizedDate.setUTCHours(0, 0, 0, 0);
+
         // 1. Generate Atomic Appointment Number
         const queue = await Queue.findOneAndUpdate(
-            { doctorId: appointmentData.doctorId, date: appointmentData.date },
+            { doctorId: appointmentData.doctorId, date: normalizedDate },
             { $inc: { lastTokenNumber: 1 } },
             { upsert: true, new: true }
         );
@@ -110,6 +119,7 @@ export const upiConfirm = async (req, res) => {
         // 3. Create Final Appointment
         const appointment = new Appointment({
             ...appointmentData,
+            date: normalizedDate, // 🌟 Override date with strict UTC midnight
             appointmentNumber,
             patientId,
             pinHash,
@@ -142,9 +152,13 @@ export const cashConfirm = async (req, res) => {
             return res.status(400).json({ success: false, message: "Appointment data is required" });
         }
 
+        // Normalize date to UTC midnight
+        const normalizedDate = new Date(appointmentData.date);
+        normalizedDate.setUTCHours(0, 0, 0, 0);
+
         // 1. Generate Atomic Appointment Number
         const queue = await Queue.findOneAndUpdate(
-            { doctorId: appointmentData.doctorId, date: appointmentData.date },
+            { doctorId: appointmentData.doctorId, date: normalizedDate },
             { $inc: { lastTokenNumber: 1 } },
             { upsert: true, new: true }
         );
@@ -161,6 +175,7 @@ export const cashConfirm = async (req, res) => {
         // 3. Create Final Appointment
         const appointment = new Appointment({
             ...appointmentData,
+            date: normalizedDate, // 🌟 Override date with strict UTC midnight
             appointmentNumber,
             patientId,
             pinHash,

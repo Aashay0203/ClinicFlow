@@ -200,7 +200,14 @@ export default function Payment() {
   };
 
   // ── AFTER SUCCESS ─────────────────────────
-  const handleDone = () => navigate("/my-appointments", { replace: true }); //next Page
+  const handleDone = () =>
+    navigate("/my-appointments", {
+      replace: true,
+      state: {
+        doctorId: appointmentData?.doctorId,
+        date: appointmentData?.date,
+      },
+    }); //next Page
 
   // ── RENDER ────────────────────────────────
   if (!order?.id) return null;

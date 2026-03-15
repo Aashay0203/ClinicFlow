@@ -1,0 +1,306 @@
+/* ─── MyAppointment.css ───────────────────────────────────────────────────── */
+
+:root {
+    --blue: #3e7df5;
+    --blue-dark: #2d62d4;
+    --blue-light: #dce9ff;
+    --blue-tint: #eff6ff;
+    --green-bg: #d5eab3;
+    --green-text: #4a7c1f;
+    --pending-bg: #fff3cd;
+    --pending-text: #856404;
+    --error-bg: #fff0f0;
+    --error-text: #d94f4f;
+    --text-dark: #010101;
+    --text-gray: #7a8799;
+    --border: #dde3ea;
+    --bg-main: #e8ecee;
+    --bg-card: #ffffff;
+}
+
+/* ── Page Wrapper ─────────────────────────────────────────────────────────── */
+
+.my-appointment-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--bg-main);
+    font-family: 'Nunito', system-ui, sans-serif;
+    padding: 0 0 2rem 0;
+}
+
+/* ── Sticky Header ────────────────────────────────────────────────────────── */
+
+.my-appointment-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--bg-main);
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem 1.5rem 0 1.5rem;
+}
+
+.greeting-text {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* ── Search Bar ───────────────────────────────────────────────────────────── */
+
+.search-wrapper {
+    margin-top: 1rem;
+}
+
+.search-wrapper .MuiOutlinedInput-root {
+    border-radius: 12px;
+    background-color: var(--bg-card);
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.search-wrapper .MuiOutlinedInput-root fieldset {
+    border-color: var(--border);
+}
+
+.search-wrapper .MuiOutlinedInput-root:hover fieldset {
+    border-color: var(--blue);
+}
+
+.search-wrapper .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: var(--blue);
+    border-width: 1.5px;
+}
+
+/* ── Tab List ─────────────────────────────────────────────────────────────── */
+
+.appointment-tabs {
+    margin-top: 1rem;
+    min-height: 40px !important;
+}
+
+.appointment-tabs .MuiTabs-indicator {
+    display: none;
+}
+
+.appointment-tabs .MuiTabs-flexContainer {
+    gap: 8px;
+}
+
+.appointment-tab {
+    min-height: 36px !important;
+    border-radius: 999px !important;
+    text-transform: none !important;
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.8125rem !important;
+    padding: 4px 24px !important;
+    color: var(--text-gray) !important;
+    transition: all 0.2s !important;
+}
+
+.appointment-tab.Mui-selected {
+    color: var(--blue) !important;
+    background-color: var(--blue-light) !important;
+}
+
+/* ── Tab Panel Content ────────────────────────────────────────────────────── */
+
+.tab-panel-content {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem 1.5rem 6rem 1.5rem;
+}
+
+/* ── Empty State ──────────────────────────────────────────────────────────── */
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--text-gray);
+}
+
+.empty-state-icon {
+    font-size: 2.5rem;
+}
+
+.empty-state-title {
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    color: var(--text-gray) !important;
+    margin-top: 0.5rem !important;
+}
+
+/* ── Appointment Card ─────────────────────────────────────────────────────── */
+
+.appointment-card {
+    background-color: var(--bg-card) !important;
+    border-radius: 24px !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 12px 48px rgba(62, 125, 245, 0.10),
+        0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    padding: 20px !important;
+    margin-bottom: 1.25rem;
+    transition: box-shadow 0.2s;
+}
+
+.appointment-card:hover {
+    box-shadow: 0 16px 56px rgba(62, 125, 245, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ── Card Top Row ─────────────────────────────────────────────────────────── */
+
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.card-doctor-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.doctor-avatar {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 14px !important;
+    background-color: var(--blue) !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+}
+
+.doctor-name {
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.0625rem !important;
+    color: var(--text-dark) !important;
+    line-height: 1.2 !important;
+}
+
+.doctor-specialty {
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.8125rem !important;
+    color: var(--text-gray) !important;
+    margin-top: 3px !important;
+}
+
+/* Status pill */
+.status-badge {
+    background-color: var(--blue-light) !important;
+    color: var(--blue) !important;
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.6875rem !important;
+    letter-spacing: 0.5px;
+    height: 26px !important;
+    border-radius: 999px !important;
+}
+
+/* ── Info Chips Row ───────────────────────────────────────────────────────── */
+
+.info-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.info-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'Nunito', system-ui, sans-serif;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.info-chip-icon {
+    font-size: 0.875rem !important;
+    color: var(--text-gray);
+}
+
+.paid-chip {
+    background-color: var(--green-bg);
+    color: var(--green-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Nunito', system-ui, sans-serif;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.pending-chip {
+    background-color: var(--pending-bg);
+    color: var(--pending-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Nunito', system-ui, sans-serif;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+/* ── Action Buttons ───────────────────────────────────────────────────────── */
+
+.card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.btn-cancel {
+    border-radius: 14px !important;
+    border-color: var(--border) !important;
+    color: var(--text-gray) !important;
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    text-transform: none !important;
+    padding: 12px !important;
+    transition: all 0.2s !important;
+}
+
+.btn-cancel:hover {
+    border-color: var(--error-text) !important;
+    color: var(--error-text) !important;
+    background-color: var(--error-bg) !important;
+}
+
+.btn-reschedule {
+    border-radius: 14px !important;
+    background-color: var(--blue) !important;
+    color: #ffffff !important;
+    font-family: 'Nunito', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    text-transform: none !important;
+    padding: 12px !important;
+    box-shadow: 0 4px 10px rgba(62, 125, 245, 0.20) !important;
+    transition: all 0.2s !important;
+}
+
+.btn-reschedule:hover {
+    background-color: var(--blue-dark) !important;
+    box-shadow: 0 6px 16px rgba(62, 125, 245, 0.35) !important;
+}

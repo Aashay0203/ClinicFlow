@@ -236,14 +236,12 @@ export const getBookedSlots = async (req, res) => {
         const bookedAppointments = await Appointment.find({
             doctorId,
             date: appointmentDate,
-            paymentStatus: "paid" // Only count paid appointments as "booked"
-        }).select("slotTime");
-
-        const bookedSlots = bookedAppointments.map(apt => apt.slotTime);
+            paymentStatus: { $in: ["paid", "pending"] } // Count cash/pending visits as booked too
+        }).select("slotTime doctorId date appointmentNumber _id");
 
         return res.status(200).json({
             success: true,
-            bookedSlots
+            bookedAppointments
         });
 
     } catch (err) {
@@ -254,3 +252,17 @@ export const getBookedSlots = async (req, res) => {
         });
     }
 };
+
+//To get all appointments for MyAppointment Page 
+
+export const myAppointments = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        // Corrected line
+        const appointments = await Appointment.find({ patientId: userId }).populate("doctorId", "name speciality fees");
+        res.status(200).json({ success: true, appointments });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ success: false, message: "Error to Fetch your Appointments" });
+    }
+}
