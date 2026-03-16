@@ -1,0 +1,17 @@
+.navbar-root {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: var(--bg, #e8ecee);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-notif-btn {
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}

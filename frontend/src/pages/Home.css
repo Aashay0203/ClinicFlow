@@ -1,0 +1,74 @@
+/* Doctor row — mobile first */
+.home-doctors-row {
+    display: flex;
+    gap: 16px;
+    padding: 12px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.home-doctors-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* Doctor item — mobile: full width, one at a time */
+.home-doctor-item {
+    min-width: 100%;
+    max-width: 100%;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+}
+
+/* Dots — visible on mobile only */
+.home-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+/* Tablet and above — show all cards, disable scroll */
+@media (min-width: 768px) {
+    .home-doctors-row {
+        overflow-x: visible;
+        scroll-snap-type: none;
+        flex-wrap: nowrap;
+    }
+
+    .home-doctor-item {
+        min-width: 0;
+        max-width: none;
+        flex: 1 1 0;
+    }
+
+    .home-dots {
+        display: none;
+    }
+}
+
+.home-hero-heading {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--black, #010101);
+    margin: 0;
+    line-height: 1.35;
+}
+
+.home-hero-blue {
+    color: var(--blue, #3e7df5);
+}
+
+@media (min-width: 768px) {
+    .home-hero-heading {
+        font-size: 34px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .home-hero-heading {
+        font-size: 40px;
+    }
+}

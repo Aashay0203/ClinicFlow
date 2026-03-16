@@ -7,6 +7,7 @@ import DoctorList from "./pages/DoctorList";
 import SlotSelection from "./pages/AppointmentBook";
 import Payment from "./pages/Payment.jsx";
 import MyAppointment from "./pages/MyAppointment.jsx";
+import Home from "./pages/Home.jsx";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/booking/:doctorId" element={<SlotSelection />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/my-appointments" element={<MyAppointment />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

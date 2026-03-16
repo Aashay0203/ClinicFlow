@@ -1,0 +1,50 @@
+.med-box {
+    width: 100%;
+    background: #D5EAB3;
+    border-radius: var(--radius-card, 24px);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.med-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.med-box-title {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--black, #010101);
+    margin: 0;
+}
+
+.med-item {
+    border-radius: 12px !important;
+    margin-bottom: 6px !important;
+    background: var(--bg, #e8ecee) !important;
+}
+
+.med-avatar {
+    background: var(--blue-light, #dce9ff) !important;
+    font-size: 18px !important;
+}
+
+.med-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.med-badge.taken {
+    background: var(--green, #d5eab3);
+    color: #4a8c2a;
+}
+
+.med-badge.pending {
+    background: #fff3e0;
+    color: #c07000;
+}

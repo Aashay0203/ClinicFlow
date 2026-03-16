@@ -11,7 +11,7 @@ import {
   CalendarIcon,
   ClockIcon,
   ShieldIcon,
-} from "../components/Icon";
+} from "../utils/Icon";
 
 //  HELPERS
 const { loadRazorpayScript, SuccessOverlay } = paymentUtils;

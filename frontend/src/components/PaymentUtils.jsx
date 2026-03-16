@@ -1,4 +1,4 @@
-import { CheckIcon } from "./Icon";
+import { CheckIcon } from "../utils/Icon";
 /** Load Razorpay SDK dynamically if not already present */
 function loadRazorpayScript() {
   return new Promise((resolve) => {

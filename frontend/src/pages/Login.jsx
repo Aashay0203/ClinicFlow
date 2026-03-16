@@ -23,7 +23,7 @@ export default function Login() {
       const res = await instance.post("/auth/login", { email, password });
       const { user, token } = res.data;
       login(user, token);
-      navigate("/doctorList"); //ek route se dusre route par jane ke liye
+      navigate("/home"); //ek route se dusre route par jane ke liye
     } catch (err) {
       setError(err.response?.data?.message || "Login Failed");
     } finally {

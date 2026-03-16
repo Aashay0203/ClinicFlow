@@ -2,13 +2,13 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import instance from "../api/axios";
 import "./AppointmentBook.css";
-import timeUtils from "../components/TimeUtils";
+import timeUtils from "../utils/TimeUtils.jsx";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
   ClockIcon,
   CalendarIcon,
-} from "../components/Icon";
+} from "../utils/Icon";
 
 // CONSTANTS
 const DAYS_PER_PAGE = 7;
