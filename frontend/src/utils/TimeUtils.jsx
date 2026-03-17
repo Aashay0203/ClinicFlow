@@ -155,6 +155,26 @@ function getAllActiveDates(activeDays) {
   return result;
 }
 
+function formatDate(dateStr) {
+  const apptDate = new Date(dateStr);
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+
+  const isSameDay = (a, b) =>
+    a.getDate() === b.getDate() &&
+    a.getMonth() === b.getMonth() &&
+    a.getFullYear() === b.getFullYear();
+
+  if (isSameDay(apptDate, today)) return "Today";
+  if (isSameDay(apptDate, tomorrow)) return "Tomorrow";
+
+  return apptDate.toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+  });
+}
+
 export default {
   parseTimeToMinutes,
   formatMinutesToDisplay,
@@ -163,4 +183,5 @@ export default {
   buildDateWindow,
   isSlotInPast,
   getAllActiveDates,
+  formatDate,
 };

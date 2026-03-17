@@ -1,17 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import SlideBar from "../components/SlideBar";
 import DoctorCard from "../components/DoctorCard";
 import instance from "../api/axios";
 import Box from "@mui/material/Box";
 import "./Home.css";
 import MedicationBox from "../components/MedicationBox";
+import UpcomingAppBox from "../components/UpcomingApp";
 
 function Home() {
   const [doctors, setDoctors] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   const scrollRef = useRef(null);
   const navigate = useNavigate();
 
@@ -47,7 +51,8 @@ function Home() {
 
   return (
     <div className="home-root">
-      <Navbar />
+      <Navbar onAvatarClick={() => setDrawerOpen(true)} />
+      <SlideBar open={drawerOpen} onClose={() => setDrawerOpen(false)} />
       <div className="home-content">
         <div className="home-hero">
           <h1 className="home-hero-heading">
@@ -85,6 +90,7 @@ function Home() {
         )}
       </div>
       <MedicationBox />
+      <UpcomingAppBox />
     </div>
   );
 }

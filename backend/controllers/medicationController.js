@@ -23,3 +23,29 @@ export const addMedication = async (req, res) => {
         res.status(500).json({ success: false, message: "Error in post Medication Details" })
     }
 }
+
+export const updateMedication = async (req, res) => {
+    try {
+        const med = await Medication.findByIdAndUpdate(
+            req.params.id,
+            { taken: req.body.taken },
+            { new: true }
+        );
+        res.status(200).json({ success: true, med });
+    } catch (err) {
+        res.status(500).json({ success: false, message: "Error updating medication" });
+    }
+};
+
+// medicationController.js
+export const resetDailyMedications = async (req, res) => {
+    try {
+        await Medication.updateMany(
+            { userId: req.user._id },
+            { taken: false }
+        );
+        res.status(200).json({ success: true, message: "Medications reset" });
+    } catch (err) {
+        res.status(500).json({ success: false, message: "Error resetting medications" });
+    }
+};

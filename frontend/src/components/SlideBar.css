@@ -1,0 +1,115 @@
+.slidebar-root {
+    width: 280px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* User section */
+.slidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 52px 20px 20px;
+}
+
+.slidebar-avatar {
+    width: 52px !important;
+    height: 52px !important;
+    background: linear-gradient(135deg, var(--blue, #3e7df5), var(--blue-dark, #2d62d4)) !important;
+    font-family: 'Urbanist', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 18px !important;
+    border: 2px solid var(--border, #dde3ea) !important;
+}
+
+.slidebar-user-info {
+    flex: 1;
+}
+
+.slidebar-name {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--black, #010101);
+    margin: 0 0 3px;
+}
+
+.slidebar-phone {
+    font-size: 12px;
+    color: var(--text-muted, #7a8799);
+    margin: 0;
+}
+
+.slidebar-edit-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border, #dde3ea);
+    background: var(--bg, #e8ecee);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    flex-shrink: 0;
+}
+
+.slidebar-edit-btn:hover {
+    background: var(--blue-light, #dce9ff);
+}
+
+/* List */
+.slidebar-list {
+    padding: 12px 10px !important;
+}
+
+.slidebar-list-item {
+    border-radius: 12px !important;
+    margin-bottom: 2px !important;
+    cursor: pointer !important;
+    padding: 10px 12px !important;
+    transition: background 0.15s ease !important;
+}
+
+.slidebar-list-item:hover {
+    background: var(--bg, #e8ecee) !important;
+}
+
+.slidebar-icon {
+    min-width: 40px !important;
+    color: var(--black, #010101) !important;
+}
+
+/* Logout */
+.slidebar-logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 16px 16px;
+    padding: 14px;
+    border-radius: 50px;
+    border: none;
+    background: #fff0f0;
+    color: #e57373;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.slidebar-logout-btn:hover {
+    background: #ffe4e4;
+}
+
+.slidebar-logout-btn:active {
+    transform: scale(0.97);
+}
+
+.slidebar-safe-bottom {
+    height: 16px;
+}

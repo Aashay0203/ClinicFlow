@@ -181,7 +181,7 @@ export const cashConfirm = async (req, res) => {
             pinHash,
             // We mark as 'paid' to ensure the slot is blocked in getBookedSlots(),
             // even though payment will be collected at the clinic.
-            paymentStatus: "paid",
+            paymentStatus: "pending",
             paymentMethod: "Cash"
         });
 

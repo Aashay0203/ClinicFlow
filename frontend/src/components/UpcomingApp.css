@@ -1,0 +1,31 @@
+.upcoming-box {
+    width: 100%;
+    background: #CDE8ED;
+    border-radius: var(--radius-card, 24px);
+    padding: 16px;
+    box-shadow: var(--shadow, 0 12px 48px rgba(62, 125, 245, 0.10));
+    font-family: 'Nunito', sans-serif;
+}
+
+.upcoming-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.upcoming-box-title {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--black, #010101);
+    margin: 0;
+}
+
+.upcoming-empty {
+    text-align: center;
+    color: var(--text-muted, #7a8799);
+    font-size: 14px;
+    padding: 24px 0;
+    margin: 0;
+}

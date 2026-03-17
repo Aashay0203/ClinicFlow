@@ -35,8 +35,12 @@
 .med-badge {
     font-size: 11px;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    white-space: nowrap;
 }
 
 .med-badge.taken {
@@ -47,4 +51,20 @@
 .med-badge.pending {
     background: #fff3e0;
     color: #c07000;
+}
+
+.med-badge:active {
+    transform: scale(0.94);
+}
+
+.med-badge.taken:hover {
+    background: #b8d98a;
+    color: #2d6a0f;
+    transform: scale(1.08);
+}
+
+.med-badge.pending:hover {
+    background: #ffe0b2;
+    color: #e65100;
+    transform: scale(1.08);
 }
