@@ -8,6 +8,9 @@ import SlotSelection from "./pages/AppointmentBook";
 import Payment from "./pages/Payment.jsx";
 import MyAppointment from "./pages/MyAppointment.jsx";
 import Home from "./pages/Home.jsx";
+import Report from "./pages/Report.jsx";
+import ReportUpload from "./pages/ReportUpload.jsx";
+import ReportDetails from "./pages/ReportDetails.jsx";
 
 export default function App() {
   return (
@@ -23,6 +26,9 @@ export default function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/my-appointments" element={<MyAppointment />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/reports" element={<Report />} />
+          <Route path="/reports/upload" element={<ReportUpload />} />
+          <Route path="/reports/:id" element={<ReportDetails />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

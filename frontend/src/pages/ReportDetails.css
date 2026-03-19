@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Urbanist:wght@400;500;600;700;800&display=swap');
+
+/* ── Page ── */
+.rd-page {
+    min-height: 100vh;
+    background: #e8ecee;
+    font-family: 'Nunito', sans-serif;
+    padding-bottom: 40px;
+}
+
+.rd-not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Entrance Animation ── */
+.rd-content-stack {
+    animation: rd-fadeUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes rd-fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Header ── */
+.rd-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    background: #e8ecee;
+    z-index: 10;
+}
+
+.rd-header-title {
+    font-family: 'Urbanist', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: #010101;
+}
+
+.rd-icon-btn {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.rd-icon-btn:hover {
+    background: #dce9ff !important;
+    color: #3e7df5 !important;
+}
+
+.rd-delete-icon-btn:hover {
+    background: #fff0f0 !important;
+    color: #d94f4f !important;
+}
+
+/* ── Shared Card ── */
+.rd-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 12px 48px rgba(62, 125, 245, 0.08);
+}
+
+/* ── Preview Card ── */
+.rd-preview-card {
+    padding: 0 !important;
+    overflow: hidden;
+    height: 260px;
+    position: relative;
+}
+
+.rd-pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.rd-img-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rd-file-badge {
+    position: absolute !important;
+    top: 12px;
+    right: 12px;
+    background: #3e7df5 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-family: 'Urbanist', sans-serif !important;
+    font-size: 11px !important;
+}
+
+/* ── Metadata ── */
+.rd-type-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 14px;
+    background: #dce9ff;
+    color: #3e7df5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rd-report-type {
+    font-family: 'Urbanist', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #010101 !important;
+    margin-bottom: 3px !important;
+}
+
+.rd-clinic-name {
+    font-size: 13px !important;
+    color: #7a8799 !important;
+    font-weight: 500 !important;
+}
+
+.rd-divider {
+    height: 1px;
+    background: #dde3ea;
+    margin-bottom: 16px;
+}
+
+.rd-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 12px;
+}
+
+.rd-meta-label {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #7a8799 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px !important;
+}
+
+.rd-meta-value {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #010101 !important;
+    word-break: break-word;
+    line-height: 1.4 !important;
+}
+
+.rd-tag-chip {
+    background: #dce9ff !important;
+    color: #2d62d4 !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+}
+
+/* ── AI Summary Card ── */
+.rd-ai-card {
+    background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 60%) !important;
+    border: 1.5px solid #dce9ff !important;
+}
+
+.rd-ai-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 12px;
+    background: #3e7df5;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rd-ai-title {
+    font-family: 'Urbanist', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    color: #010101 !important;
+    margin-bottom: 2px !important;
+}
+
+.rd-ai-sub {
+    font-size: 11px !important;
+    color: #7a8799 !important;
+    font-weight: 500 !important;
+}
+
+.rd-ai-status-chip {
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    font-family: 'Urbanist', sans-serif !important;
+    text-transform: capitalize !important;
+}
+
+.rd-ai-summary-text {
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    background: #e8ecee;
+    border-radius: 14px;
+    padding: 14px 16px !important;
+    color: #010101 !important;
+}
+
+.rd-ai-pending-text {
+    font-size: 13px !important;
+    color: #7a8799 !important;
+    margin-bottom: 14px !important;
+    line-height: 1.6 !important;
+}
+
+.rd-generate-btn {
+    background: #3e7df5 !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 13px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-transform: none !important;
+    font-family: 'Nunito', sans-serif !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.rd-generate-btn:hover:not(:disabled) {
+    background: #2d62d4 !important;
+    box-shadow: 0 6px 20px rgba(62, 125, 245, 0.3) !important;
+}
+
+.rd-generate-btn:disabled {
+    opacity: 0.7 !important;
+}
+
+.rd-retry-btn {
+    background: #fff0f0 !important;
+    color: #d94f4f !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.rd-retry-btn:hover {
+    background: #ffd7d7 !important;
+}
+
+/* ── Action Buttons ── */
+.rd-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.rd-download-btn {
+    background: #3e7df5 !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 13px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    font-family: 'Nunito', sans-serif !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.rd-download-btn:hover {
+    background: #2d62d4 !important;
+    box-shadow: 0 6px 20px rgba(62, 125, 245, 0.3) !important;
+}
+
+.rd-share-btn {
+    background: #ffffff !important;
+    color: #010101 !important;
+    border-radius: 14px !important;
+    padding: 13px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    font-family: 'Nunito', sans-serif !important;
+    border: 1.5px solid #dde3ea !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.rd-share-btn:hover {
+    background: #dce9ff !important;
+    border-color: #3e7df5 !important;
+    color: #3e7df5 !important;
+}
+
+/* ── Delete Dialog ── */
+.rd-dialog-paper {
+    border-radius: 24px !important;
+    padding: 8px !important;
+    width: 100% !important;
+    max-width: 360px !important;
+}
+
+.rd-modal-title {
+    font-family: 'Urbanist', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #010101 !important;
+    margin-bottom: 8px !important;
+}
+
+.rd-modal-sub {
+    font-size: 13px !important;
+    color: #7a8799 !important;
+    line-height: 1.6 !important;
+}
+
+.rd-dialog-actions {
+    padding: 8px 24px 24px !important;
+    gap: 12px !important;
+}
+
+.rd-modal-cancel {
+    border: 1.5px solid #dde3ea !important;
+    border-radius: 14px !important;
+    color: #010101 !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    padding: 13px !important;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.rd-modal-confirm {
+    background: #d94f4f !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    padding: 13px !important;
+    font-family: 'Nunito', sans-serif !important;
+    transition: opacity 0.2s !important;
+}
+
+.rd-modal-confirm:disabled {
+    opacity: 0.6 !important;
+}
+
+.rd-modal-confirm:hover:not(:disabled) {
+    background: #c03f3f !important;
+}

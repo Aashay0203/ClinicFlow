@@ -53,17 +53,17 @@ export default function MyAppointment() {
 
   const upcoming = filterBySearch(
     myAppointments.filter((a) => {
-      const d = new Date(a.date);
-      d.setHours(0, 0, 0, 0);
-      return d >= today;
+      const appointmentDateStr = new Date(a.date).toISOString().split("T")[0];
+      const todayStr = new Date().toISOString().split("T")[0];
+      return appointmentDateStr >= todayStr;
     }),
   );
 
   const past = filterBySearch(
     myAppointments.filter((a) => {
-      const d = new Date(a.date);
-      d.setHours(0, 0, 0, 0);
-      return d < today;
+      const appointmentDateStr = new Date(a.date).toISOString().split("T")[0];
+      const todayStr = new Date().toISOString().split("T")[0];
+      return appointmentDateStr < todayStr;
     }),
   );
 
