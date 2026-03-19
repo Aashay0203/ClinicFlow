@@ -356,3 +356,8 @@
 .rd-modal-confirm:hover:not(:disabled) {
     background: #c03f3f !important;
 }
+
+.rd-pdf-iframe,
+.rd-img-preview {
+    pointer-events: none;
+}

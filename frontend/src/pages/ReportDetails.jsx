@@ -63,41 +63,21 @@ function ReportDetails() {
   const [aiLoading, setAiLoading] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [pdfBlobUrl, setPdfBlobUrl] = useState(null);
 
-  // Add this useEffect after your existing fetchReport useEffect
   useEffect(() => {
-    if (report?.fileType === "pdf" && report?.fileUrl) {
-      fetch(report.fileUrl)
-        .then((r) => r.blob())
-        .then((blob) => {
-          const url = URL.createObjectURL(blob);
-          setPdfBlobUrl(url);
-        })
-        .catch((err) => console.error("PDF load failed", err));
-    }
-
-    // Cleanup blob URL on unmount
-    return () => {
-      if (pdfBlobUrl) URL.revokeObjectURL(pdfBlobUrl);
+    const fetchReport = async () => {
+      try {
+        const res = await instance.get(`/reports/${id}`);
+        setReport(res.data.report);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     };
-  }, [report]);
 
-  useEffect(() => {
     fetchReport();
-  }, []);
-
-  const fetchReport = async () => {
-    try {
-      const res = await instance.get(`/reports/${id}`);
-      setReport(res.data.report);
-      console.log(res.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [id]);
 
   const handleGenerateSummary = async () => {
     try {
@@ -199,7 +179,11 @@ function ReportDetails() {
       {/* ── All Cards ── */}
       <Stack spacing={2} sx={{ px: 2 }} className="rd-content-stack">
         {/* ── File Preview ── */}
-        <Box className="rd-card rd-preview-card">
+        <Box
+          className="rd-card rd-preview-card"
+          onClick={() => window.open(report.fileUrl, "_blank")}
+          sx={{ cursor: "pointer" }}
+        >
           {report.fileType === "pdf" ? (
             <iframe
               className="rd-pdf-iframe"

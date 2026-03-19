@@ -1,8 +1,11 @@
 .med-box {
+    flex: 1;
     width: 100%;
+    max-width: 1200px;
     background: #D5EAB3;
     border-radius: var(--radius-card, 24px);
     padding: 16px;
+    margin: 0 auto;
     box-shadow: var(--shadow);
 }
 

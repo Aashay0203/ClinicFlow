@@ -1,10 +1,14 @@
 .upcoming-box {
     width: 100%;
+    max-width: 1200px;
     background: #CDE8ED;
     border-radius: var(--radius-card, 24px);
     padding: 16px;
     box-shadow: var(--shadow, 0 12px 48px rgba(62, 125, 245, 0.10));
     font-family: 'Nunito', sans-serif;
+    flex: 1;
+    margin: 20px auto;
+
 }
 
 .upcoming-box-header {

@@ -100,7 +100,6 @@ function ReportUpload() {
         },
       });
 
-      console.log("Upload success:", response.data);
       alert("Report uploaded successfully!");
       navigate("/reports");
     } catch (error) {

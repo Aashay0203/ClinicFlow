@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useNavigation } from "react";
 import "./MyAppointment.css";
 import instance from "../api/axios";
 
@@ -29,6 +29,8 @@ export default function MyAppointment() {
   const [myAppointments, setMyAppointments] = useState([]);
   const [value, setValue] = useState("1");
   const [search, setSearch] = useState("");
+
+  const navigate = useNavigation;
 
   useEffect(() => {
     const fetchAppointments = async () => {

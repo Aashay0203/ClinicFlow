@@ -19,7 +19,6 @@ export default function DoctorList() {
   const fetchDoctors = async () => {
     try {
       const res = await instance.get("/doctor/allDoctors");
-      console.log(res.data.allDoctors);
       setDoctors(res.data.allDoctors);
     } catch (err) {
       setError("Failed to load doctors. Please try again later.");

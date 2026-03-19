@@ -14,7 +14,6 @@ function UpcomingAppBox() {
       try {
         const res = await instance.get("/appointment/my-appointements");
         setMyAppointments(res.data.appointments);
-        console.log(res.data.appointments);
       } catch (err) {
         setError("Failed to load appointments.");
       } finally {
