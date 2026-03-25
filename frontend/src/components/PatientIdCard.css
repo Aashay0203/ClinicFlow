@@ -1,0 +1,391 @@
+/* ═══════════════════════════════════════════════════════
+   PatientIDCard.css  —  DelhiMed Patient ID Card
+   ALL styles live here — including MUI component overrides
+   Fonts  : Urbanist 800 (headings) · Nunito (body)
+   Palette: #3e7df5 · #2d62d4 · #1a4fa8 · #d5eab3
+   Tokens : --radius-card:24px · --radius-btn:14px
+            --border:#dde3ea · --text-muted:#7a8799
+═══════════════════════════════════════════════════════ */
+
+/* ─── Wrapper ─── */
+.pid-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ════════════════════════════════════════
+   CARD SHELL
+════════════════════════════════════════ */
+.pid-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 18px 18px 14px;
+    min-height: 185px;
+    isolation: isolate;
+    background: linear-gradient(135deg,
+            #4a8af5 0%,
+            #3e7df5 30%,
+            #2d62d4 65%,
+            #1a4fa8 100%);
+    box-shadow:
+        0 16px 48px rgba(62, 125, 245, 0.38),
+        0 2px 8px rgba(62, 125, 245, 0.2);
+}
+
+/* ════════════════════════════════════════
+   DECORATIVE CIRCLES
+════════════════════════════════════════ */
+.pid-deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pid-deco--tl {
+    width: 160px;
+    height: 160px;
+    top: -55px;
+    right: -45px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.pid-deco--br {
+    width: 110px;
+    height: 110px;
+    bottom: -40px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.pid-deco--mid {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    left: -15px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ════════════════════════════════════════
+   HEADER
+════════════════════════════════════════ */
+.pid-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.pid-brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pid-logo-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 900;
+    font-family: 'Urbanist', sans-serif;
+    line-height: 1;
+}
+
+/* MUI Typography — pid-logo-text */
+.pid-logo-text.MuiTypography-root {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    line-height: 1;
+}
+
+/* MUI Typography — pid-year-label */
+.pid-year-label.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.6px;
+}
+
+/* ════════════════════════════════════════
+   BODY
+════════════════════════════════════════ */
+.pid-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.pid-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* ─── Avatar ─── */
+.pid-avatar-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    flex-shrink: 0;
+}
+
+.pid-avatar-fallback {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* MUI Typography — avatar initial letter */
+.pid-avatar-initial.MuiTypography-root {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffff;
+    line-height: 1;
+}
+
+/* ─── Patient info stack ─── */
+.pid-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+/* MUI Typography — patient name */
+.pid-name.MuiTypography-root {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+/* MUI Typography — patient ID */
+.pid-id-label.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
+.pid-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 3px;
+}
+
+/* Blood group badge */
+.pid-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.pid-badge--blood {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* MUI Typography inside badge */
+.pid-badge-text.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* MUI Typography — phone */
+.pid-phone.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ─── QR box ─── */
+.pid-qr-box {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+    padding: 7px 7px 5px;
+}
+
+/* MUI Typography — "Scan to verify" */
+.pid-qr-label.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+.pid-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 13px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pid-abha-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* MUI SvgIcon — ABHA checkmark */
+.pid-abha-icon.MuiSvgIcon-root {
+    font-size: 11px;
+    color: #d5eab3;
+}
+
+/* MUI Typography — ABHA text */
+.pid-abha-text.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #d5eab3;
+}
+
+/* MUI Typography — ABHA not linked */
+.pid-abha-unlinked.MuiTypography-root {
+    color: rgba(255, 255, 255, 0.35);
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* MUI Typography — tagline */
+.pid-tagline.MuiTypography-root {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    font-style: italic;
+}
+
+/* ════════════════════════════════════════
+   ACTION BUTTONS  (MUI Button overrides)
+════════════════════════════════════════ */
+.pid-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Shared base — resets all MUI Button defaults */
+.pid-btn.MuiButton-root {
+    flex: 1;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    box-shadow: none;
+    transition:
+        background 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pid-btn.MuiButton-root:hover {
+    box-shadow: none;
+}
+
+/* Outline variant — Download button */
+.pid-btn--outline.MuiButton-outlined {
+    background: transparent;
+    border: 1.5px solid #3e7df5;
+    color: #3e7df5;
+}
+
+.pid-btn--outline.MuiButton-outlined:hover {
+    background: #dce9ff;
+    border-color: #3e7df5;
+}
+
+/* Downloading state — outline button */
+.pid-btn--downloading.MuiButton-outlined,
+.pid-btn--downloading.MuiButton-outlined:hover {
+    border-color: #dde3ea;
+    color: #7a8799;
+    background: transparent;
+    cursor: not-allowed;
+    pointer-events: auto;
+}
+
+/* Filled variant — Share button */
+.pid-btn--filled.MuiButton-contained {
+    background: #3e7df5;
+    border: 1.5px solid #3e7df5;
+    color: #ffffff;
+}
+
+.pid-btn--filled.MuiButton-contained:hover {
+    background: #2d62d4;
+    border-color: #2d62d4;
+}
+
+/* MUI Button icon size */
+.pid-btn .MuiButton-startIcon .MuiSvgIcon-root {
+    font-size: 18px;
+}
+
+/* ════════════════════════════════════════
+   SNACKBAR ALERT  (MUI Alert override)
+════════════════════════════════════════ */
+
+/* Alert message text */
+.pid-snack-alert .MuiAlert-message {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}

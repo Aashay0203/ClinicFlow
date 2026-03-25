@@ -9,6 +9,7 @@ import queueRoute from "./routes/queueRoute.js";
 import paymentRoute from "./routes/paymentRoute.js"
 import medicationRoutes from "./routes/medicationRoute.js";
 import reportRoute from "./routes/reportRoute.js";
+import userRoute from "./routes/userRoute.js";
 
 
 const PORT = 8080;
@@ -33,6 +34,7 @@ app.use("/api/queue", queueRoute);
 app.use("/api/payment", paymentRoute);
 app.use("/api/medication", medicationRoutes);
 app.use("/api/reports", reportRoute);
+app.use("/api/user", userRoute);
 
 
 app.get("/test", (req, res) => {

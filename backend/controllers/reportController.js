@@ -37,7 +37,7 @@ const uploadToCloudinary = (buffer, fileName) => {
 export const saveCloudinaryResult = async (req, res) => {
     try {
         if (!req.file) {
-            return res.status(400).json({ message: 'No file uploaded' });
+            return res.status(400).json({ success: false, message: 'No file uploaded' });
         }
 
         // Upload to Cloudinary
@@ -68,6 +68,7 @@ export const saveCloudinaryResult = async (req, res) => {
         // processReportWithAI(report._id);
 
         res.status(201).json({
+            success: true,
             message: 'Report uploaded successfully',
             report
         });
@@ -75,6 +76,7 @@ export const saveCloudinaryResult = async (req, res) => {
     } catch (error) {
         console.error('Upload error:', error);
         res.status(500).json({
+            success: false,
             message: 'Failed to upload report',
             error: error.message
         });
@@ -86,7 +88,8 @@ export const getAllReport = async (req, res) => {
         const reports = await Report.find({ userId: req.user.id })
             .sort({ uploadedAt: -1 });
 
-        res.json({
+        res.status(200).json({
+            success: true,
             reports,
             count: reports.length
         });
@@ -94,6 +97,7 @@ export const getAllReport = async (req, res) => {
     } catch (error) {
         console.error('Get reports error:', error);
         res.status(500).json({
+            success: false,
             message: 'Failed to fetch reports',
             error: error.message
         });
@@ -108,10 +112,10 @@ export const getSingleReport = async (req, res) => {
         });
 
         if (!report) {
-            return res.status(404).json({ message: 'Report not found' });
+            return res.status(404).json({ success: false, message: 'Report not found' });
         }
 
-        res.json({ report });
+        res.status(200).json({ success: true, report });
 
     } catch (error) {
         console.error('Get report error:', error);
@@ -132,7 +136,7 @@ export const saveMetaData = async (req, res) => {
         });
 
         if (!report) {
-            return res.status(404).json({ message: 'Report not found' });
+            return res.status(404).json({ success: false, message: 'Report not found' });
         }
 
         // Update fields if provided
@@ -144,7 +148,8 @@ export const saveMetaData = async (req, res) => {
 
         await report.save();
 
-        res.json({
+        res.status(200).json({
+            success: true,
             message: 'Report updated successfully',
             report
         });
@@ -166,7 +171,7 @@ export const deleteReport = async (req, res) => {
         });
 
         if (!report) {
-            return res.status(404).json({ message: 'Report not found' });
+            return res.status(404).json({ success: false, message: 'Report not found' });
         }
 
         // Delete from Cloudinary
@@ -175,11 +180,12 @@ export const deleteReport = async (req, res) => {
         // Delete from database
         await Report.deleteOne({ _id: req.params.id });
 
-        res.json({ message: 'Report deleted successfully' });
+        res.status(200).json({ success: true, message: 'Report deleted successfully' });
 
     } catch (error) {
         console.error('Delete report error:', error);
         res.status(500).json({
+            success: false,
             message: 'Failed to delete report',
             error: error.message
         });
@@ -196,10 +202,11 @@ export const aiStatus = async (req, res) => {
         }).select('aiStatus aiSummary aiError');
 
         if (!report) {
-            return res.status(404).json({ message: 'Report not found' });
+            return res.status(404).json({ success: false, message: 'Report not found' });
         }
 
-        res.json({
+        res.status(200).json({
+            success: true,
             aiStatus: report.aiStatus,
             aiSummary: report.aiSummary,
             aiError: report.aiError
@@ -208,6 +215,7 @@ export const aiStatus = async (req, res) => {
     } catch (error) {
         console.error('Get status error:', error);
         res.status(500).json({
+            success: false,
             message: 'Failed to fetch status',
             error: error.message
         });

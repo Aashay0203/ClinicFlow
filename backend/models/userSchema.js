@@ -21,7 +21,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         enum: ["patient", "admin", "doctor"],
         default: "patient",
-    }
+    },
+    abhaId: { type: String, default: null },
+    profilePicture: {
+        type: String,
+        default: "https://cdn1.iconfinder.com/data/icons/mix-color-3/502/Untitled-7-1024.png",
+    },
 },
     { timestamps: true }
 );

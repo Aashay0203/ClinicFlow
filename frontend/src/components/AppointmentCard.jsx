@@ -2,6 +2,7 @@ import TimeUtils from "../utils/TimeUtils.jsx";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import { Typography, Avatar, Chip, Button, Paper } from "@mui/material";
+import "./AppointmentCard.css";
 
 export default function AppointmentCard({ appointment }) {
   const doctor = appointment.doctorId || {};
