@@ -1,8 +1,17 @@
 import express from "express";
-import protect from "../middleware/authmiddleware.js";
-import { saveCloudinaryResult, getAllReport, getSingleReport, saveMetaData, deleteReport, aiStatus } from "../controllers/reportController.js";
-const router = express.Router();
 import multer from "multer";
+import protect from "../middleware/authmiddleware.js";
+import {
+    saveCloudinaryResult,
+    getAllReport,
+    getSingleReport,
+    saveMetaData,
+    deleteReport,
+    aiStatus,
+    regenerateSummary
+} from "../controllers/reportController.js";
+
+const router = express.Router();
 
 // Multer configuration - store in memory for direct Cloudinary upload
 const storage = multer.memoryStorage();
@@ -21,12 +30,17 @@ const upload = multer({
     }
 });
 
+// ─── Non-param routes first (CRITICAL — must be before /:id) ─────────────────
 router.post('/upload', protect, upload.single('file'), saveCloudinaryResult);
 router.get('/', protect, getAllReport);
-router.get('/', protect, getAllReport);
+
+// ─── Specific :id sub-routes (MUST be before /:id catch-all) ─────────────────
+router.get('/:id/ai-status', protect, aiStatus);
+router.post('/:id/regenerate-summary', protect, regenerateSummary);
+
+// ─── Generic :id routes (catch-all — always last) ────────────────────────────
 router.get('/:id', protect, getSingleReport);
 router.patch('/:id', protect, saveMetaData);
 router.delete('/:id', protect, deleteReport);
-router.get('/:id/status', protect, aiStatus);
 
 export default router;

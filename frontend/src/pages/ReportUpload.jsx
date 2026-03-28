@@ -94,14 +94,19 @@ function ReportUpload() {
         ),
       );
 
-      const response = await instance.post("/reports/upload", uploadData, {
+      const response = await instance.post("/report/upload", uploadData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
       alert("Report uploaded successfully!");
-      navigate("/reports");
+      const uploadedReportId = response?.data?.report?._id;
+      if (uploadedReportId) {
+        navigate(`/reports/${uploadedReportId}`);
+      } else {
+        navigate("/reports");
+      }
     } catch (error) {
       console.error("Upload failed:", error);
       alert(error.response?.data?.message || "Failed to upload report");

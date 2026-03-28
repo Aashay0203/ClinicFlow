@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import instance from "../api/axios";
 import DoctorCard from "../components/DoctorCard"; // <-- ADD THIS IMPORT
 import "./DoctorList.css";
@@ -35,6 +38,15 @@ export default function DoctorList() {
 
   return (
     <div className="list-container">
+      <div className="list-top-nav">
+        <IconButton className="list-back-btn" onClick={() => navigate(-1)}>
+          <ArrowBackIosNewIcon fontSize="small" />
+        </IconButton>
+        <IconButton className="list-home-btn" onClick={() => navigate("/home")}>
+          <HomeOutlinedIcon fontSize="small" />
+        </IconButton>
+      </div>
+
       <div className="list-header">
         <input
           type="text"

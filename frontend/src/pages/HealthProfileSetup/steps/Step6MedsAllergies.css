@@ -1,0 +1,58 @@
+/* Step6MedsAllergies.css */
+
+.step6-root {}
+
+.step6-subtitle {
+    font-size: 12px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 600 !important;
+    color: #7a8799 !important;
+    margin-bottom: 14px !important;
+    margin-top: -10px !important;
+    line-height: 1.4 !important;
+}
+
+/* Red allergy chips */
+.step6-chip--red.MuiChip-root {
+    background: #fff0f0;
+    color: #d94f4f;
+    border: 1px solid rgba(217, 79, 79, 0.15);
+}
+
+.step6-chip--red.MuiChip-root:hover {
+    background: #ffe4e4;
+}
+
+.step6-chip--red.MuiChip-root .MuiChip-deleteIcon {
+    color: #d94f4f;
+    opacity: 0.65;
+}
+
+.step6-chip--red.MuiChip-root .MuiChip-deleteIcon:hover {
+    opacity: 1;
+}
+
+/* AI note banner */
+.step6-ai-note {
+    background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border: 1px solid rgba(62, 125, 245, 0.12);
+}
+
+.step6-ai-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.step6-ai-text {
+    font-size: 13px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 600 !important;
+    color: #3e7df5 !important;
+    line-height: 1.4 !important;
+}

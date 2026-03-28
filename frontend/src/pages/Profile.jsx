@@ -16,23 +16,21 @@ import {
   Chip,
   Tooltip,
 } from "@mui/material";
-import {
-  ArrowBack,
-  Edit,
-  Save,
-  Close,
-  CameraAlt,
-  MonitorHeart,
-  Person,
-  Cake,
-  Wc,
-  Phone,
-  Email,
-  LocationOn,
-  VerifiedUser,
-  InfoOutlined,
-  Lock,
-} from "@mui/icons-material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
+import CloseIcon from "@mui/icons-material/Close";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import PersonIcon from "@mui/icons-material/Person";
+import CakeIcon from "@mui/icons-material/Cake";
+import WcIcon from "@mui/icons-material/Wc";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import LockIcon from "@mui/icons-material/Lock";
 import { AuthContext } from "../context/AuthContext";
 import instance from "../api/axios";
 import PatientIdCard from "../components/PatientIdCard.jsx";
@@ -75,7 +73,7 @@ const InfoRow = ({ icon, label, value, locked, children, showDivider }) => (
       <div className="profile-info-row__text">
         <div className="profile-info-row__label-wrap">
           <Typography className="profile-info-label">{label}</Typography>
-          {locked && <Lock sx={{ fontSize: 10, color: "#b0bac5" }} />}
+          {locked && <LockIcon sx={{ fontSize: 10, color: "#b0bac5" }} />}
         </div>
         {children || (
           <Typography
@@ -252,7 +250,7 @@ const Profile = () => {
               size="small"
               className="profile-back-btn"
             >
-              <ArrowBack />
+              <ArrowBackIcon />
             </IconButton>
             <Typography className="profile-appbar-title">My Profile</Typography>
           </div>
@@ -264,7 +262,7 @@ const Profile = () => {
                 onClick={handleCancelEdit}
                 className="profile-cancel-btn"
               >
-                <Close fontSize="small" />
+                <CloseIcon fontSize="small" />
               </IconButton>
               <div
                 className={`profile-save-btn${saving ? " profile-save-btn--saving" : ""}`}
@@ -273,14 +271,14 @@ const Profile = () => {
                 {saving ? (
                   <CircularProgress size={14} sx={{ color: "#7a8799" }} />
                 ) : (
-                  <Save sx={{ fontSize: 16 }} />
+                  <SaveIcon sx={{ fontSize: 16 }} />
                 )}
                 {saving ? "Saving…" : "Save"}
               </div>
             </div>
           ) : (
             <div className="profile-edit-btn" onClick={() => setEditMode(true)}>
-              <Edit sx={{ fontSize: 15 }} />
+              <EditIcon sx={{ fontSize: 15 }} />
               Edit
             </div>
           )}
@@ -303,7 +301,7 @@ const Profile = () => {
                 {uploadingPic ? (
                   <CircularProgress size={13} sx={{ color: "#fff" }} />
                 ) : (
-                  <CameraAlt sx={{ fontSize: 13, color: "#fff" }} />
+                  <CameraAltIcon sx={{ fontSize: 13, color: "#fff" }} />
                 )}
               </div>
               <input
@@ -349,20 +347,20 @@ const Profile = () => {
 
           <div className="profile-info-rows">
             <InfoRow
-              icon={<Person sx={{ fontSize: 16 }} />}
+              icon={<PersonIcon sx={{ fontSize: 16 }} />}
               label="Full Name"
               value={profile?.name}
               locked
             />
             <InfoRow
-              icon={<Phone sx={{ fontSize: 16 }} />}
+              icon={<PhoneIcon sx={{ fontSize: 16 }} />}
               label="Phone"
               value={phone}
               locked
               showDivider
             />
             <InfoRow
-              icon={<Email sx={{ fontSize: 16 }} />}
+              icon={<EmailIcon sx={{ fontSize: 16 }} />}
               label="Email"
               value={profile?.email}
               locked
@@ -371,7 +369,7 @@ const Profile = () => {
 
             {/* Date of Birth */}
             <InfoRow
-              icon={<Cake sx={{ fontSize: 16 }} />}
+              icon={<CakeIcon sx={{ fontSize: 16 }} />}
               label="Date of Birth"
               value={formatDob(profile?.dob)}
               showDivider
@@ -391,7 +389,7 @@ const Profile = () => {
 
             {/* Gender */}
             <InfoRow
-              icon={<Wc sx={{ fontSize: 16 }} />}
+              icon={<WcIcon sx={{ fontSize: 16 }} />}
               label="Gender"
               value={profile?.gender || "—"}
               showDivider
@@ -426,7 +424,7 @@ const Profile = () => {
 
             {/* Address */}
             <InfoRow
-              icon={<LocationOn sx={{ fontSize: 16 }} />}
+              icon={<LocationOnIcon sx={{ fontSize: 16 }} />}
               label="Address"
               value={profile?.address || "—"}
               showDivider
@@ -449,7 +447,7 @@ const Profile = () => {
             <Divider sx={{ my: 0.5 }} />
             <div className="profile-info-row">
               <div className="profile-icon-box">
-                <VerifiedUser sx={{ fontSize: 16 }} />
+                <VerifiedUserIcon sx={{ fontSize: 16 }} />
               </div>
               <div className="profile-info-row__text">
                 <div className="profile-info-row__label-wrap">
@@ -461,7 +459,7 @@ const Profile = () => {
                     arrow
                     placement="top"
                   >
-                    <InfoOutlined
+                    <InfoOutlinedIcon
                       sx={{ fontSize: 13, color: "#b0bac5", cursor: "help" }}
                     />
                   </Tooltip>
@@ -507,7 +505,7 @@ const Profile = () => {
 
           {editMode && (
             <Typography className="profile-locked-note">
-              <Lock sx={{ fontSize: 11 }} />
+              <LockIcon sx={{ fontSize: 11 }} />
               Name, phone, and email are managed by the clinic.
             </Typography>
           )}
@@ -622,7 +620,7 @@ const Profile = () => {
             onClick={() => navigate("/health-profile")}
           >
             <div className="profile-health-cta__left">
-              <MonitorHeart className="profile-health-cta__icon" />
+              <MonitorHeartIcon className="profile-health-cta__icon" />
               <div>
                 <Typography className="profile-health-cta__title">
                   View Full Health Summary

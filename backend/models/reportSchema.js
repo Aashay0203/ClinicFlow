@@ -65,8 +65,22 @@ const reportSchema = new mongoose.Schema({
         default: 'pending'
     },
     aiSummary: {
-        type: Object,
-        default: null
+        testTable: {
+            type: [mongoose.Schema.Types.Mixed],
+            default: []
+        },
+        plainSummary: {
+            type: [String],
+            default: []
+        },
+        extractedHealthData: {
+            type: mongoose.Schema.Types.Mixed,
+            default: {}
+        },
+        generatedAt: {
+            type: Date,
+            default: null
+        }
     },
     aiError: {
         type: String,

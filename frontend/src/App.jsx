@@ -15,6 +15,12 @@ const Report = lazy(() => import("./pages/Report.jsx"));
 const ReportUpload = lazy(() => import("./pages/ReportUpload.jsx"));
 const ReportDetails = lazy(() => import("./pages/ReportDetails.jsx"));
 const Profile = lazy(() => import("./pages/Profile.jsx"));
+const HealthProfileSetup = lazy(
+  () => import("./pages/HealthProfileSetup/HealthProfileSetup.jsx"),
+);
+const HealthProfile = lazy(
+  () => import("./pages/HealthProfile/HealthProfile.jsx"),
+);
 
 function PageLoader() {
   return (
@@ -51,6 +57,11 @@ export default function App() {
             <Route path="/reports/upload" element={<ReportUpload />} />
             <Route path="/reports/:id" element={<ReportDetails />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/health-profile" element={<HealthProfile />} />
+            <Route
+              path="/health-profile/setup"
+              element={<HealthProfileSetup />}
+            />
           </Routes>
         </Suspense>
       </AuthProvider>

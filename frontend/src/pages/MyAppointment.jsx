@@ -1,13 +1,22 @@
-import React, { useEffect, useState, useNavigation } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./MyAppointment.css";
 import instance from "../api/axios";
 
-import { Box, Typography, TextField, InputAdornment } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import SearchIcon from "@mui/icons-material/Search";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import AppointmentCard from "../components/AppointmentCard";
 
 // ─── EmptyState ───────────────────────────────────────────────────────────────
@@ -30,7 +39,7 @@ export default function MyAppointment() {
   const [value, setValue] = useState("1");
   const [search, setSearch] = useState("");
 
-  const navigate = useNavigation;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -73,6 +82,21 @@ export default function MyAppointment() {
     <div className="my-appointment-page">
       {/* ── Sticky Header ── */}
       <div className="my-appointment-header">
+        <div className="my-appointment-top-nav">
+          <IconButton
+            className="my-appointment-back-btn"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowBackIosNewIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            className="my-appointment-home-btn"
+            onClick={() => navigate("/home")}
+          >
+            <HomeOutlinedIcon fontSize="small" />
+          </IconButton>
+        </div>
+
         <p className="greeting-text">Good Morning 👋</p>
         <h1 className="page-title">My Appointments</h1>
 

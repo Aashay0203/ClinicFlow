@@ -26,6 +26,17 @@ envContent.split('\n').forEach(line => {
 
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'axios',
+      '@mui/material',
+      '@emotion/react',
+      '@emotion/styled'
+    ]
+  },
   define: {
     'import.meta.env.VITE_RAZORPAY_KEY_ID': JSON.stringify(envVars.RAZORPAY_KEY_ID),
     'import.meta.env.VITE_UPI_ID': JSON.stringify(envVars.UPI_ID),

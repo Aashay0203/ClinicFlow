@@ -24,6 +24,7 @@ import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 import "./SlideBar.css";
 
@@ -43,6 +44,11 @@ const menuItems = [
     label: "Your Reports",
     icon: <NoteAddOutlinedIcon />,
     route: "/reports",
+  },
+  {
+    label: "Health Profile",
+    icon: <FavoriteBorderOutlinedIcon />,
+    route: "/health-profile",
   },
 
   {

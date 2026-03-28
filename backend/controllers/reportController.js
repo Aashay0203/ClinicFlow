@@ -2,6 +2,8 @@ import Report from "../models/reportSchema.js";
 import multer from "multer"
 import { v2 as cloudinary } from "cloudinary";
 import { Readable } from 'stream';
+import { processReportInBackground } from "../jobs/processReport.js";
+
 
 // Cloudinary configuration (add to your .env file)
 cloudinary.config({
@@ -66,6 +68,8 @@ export const saveCloudinaryResult = async (req, res) => {
 
         // TODO: Trigger AI processing in background (Phase 3C)
         // processReportWithAI(report._id);
+        processReportInBackground(report._id, cloudinaryResult.secure_url, fileType, req.user.id);
+
 
         res.status(201).json({
             success: true,
@@ -221,3 +225,38 @@ export const aiStatus = async (req, res) => {
         });
     }
 }
+
+export const regenerateSummary = async (req, res) => {
+    try {
+        const report = await Report.findOne({
+            _id: req.params.id,
+            userId: req.user.id
+        });
+
+        if (!report) {
+            return res.status(404).json({ success: false, message: 'Report not found' });
+        }
+
+        // Reset status so polling works correctly
+        report.aiStatus = 'pending';
+        report.aiError = null;
+        await report.save();
+
+        // Fire background job — non-blocking
+        processReportInBackground(report._id, report.fileUrl, report.fileType, req.user.id);
+
+        res.status(200).json({
+            success: true,
+            message: 'AI analysis started',
+            aiStatus: 'pending'
+        });
+
+    } catch (error) {
+        console.error('Regenerate summary error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to start AI analysis',
+            error: error.message
+        });
+    }
+};

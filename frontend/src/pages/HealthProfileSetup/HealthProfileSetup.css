@@ -1,0 +1,422 @@
+/* ─── HealthProfileSetup.css ─────────────────────────────────────────────────
+   Shared styles used by the parent AND all 6 step components.
+   All step components import this file.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.hps-root {
+    min-height: 100vh;
+    background: #e8ecee;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Nunito', sans-serif;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────────── */
+.hps-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 52px 20px 16px;
+}
+
+.hps-back-btn.MuiIconButton-root {
+    background: #ffffff;
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(62, 125, 245, 0.10);
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-back-btn.MuiIconButton-root:hover {
+    background: #dce9ff;
+    box-shadow: 0 4px 16px rgba(62, 125, 245, 0.18);
+}
+
+.hps-back-btn.MuiIconButton-root svg {
+    font-size: 20px;
+    color: #010101;
+}
+
+.hps-header-text {
+    flex: 1;
+}
+
+.hps-step-label {
+    font-size: 11px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+    color: #7a8799 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+}
+
+.hps-step-title {
+    font-size: 20px !important;
+    font-family: 'Urbanist', sans-serif !important;
+    font-weight: 800 !important;
+    color: #010101 !important;
+    line-height: 1.2 !important;
+}
+
+.hps-skip-btn.MuiButton-root {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #7a8799;
+    text-transform: none;
+    padding: 6px 10px;
+    min-width: unset;
+    border-radius: 10px;
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-skip-btn.MuiButton-root:hover {
+    background: #dde3ea;
+    color: #010101;
+}
+
+/* ── Progress bar ────────────────────────────────────────────────────────────── */
+.hps-progress.MuiLinearProgress-root {
+    height: 3px;
+    background: #dde3ea;
+    border-radius: 8px;
+    margin: 4px 20px 0;
+}
+
+.hps-progress .MuiLinearProgress-bar {
+    background: linear-gradient(90deg, #3e7df5, #6fa0ff);
+    border-radius: 8px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ── Step dots ───────────────────────────────────────────────────────────────── */
+.hps-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 14px 20px 0;
+}
+
+.hps-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #dde3ea;
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-dot--active {
+    background: #3e7df5;
+    width: 20px;
+    border-radius: 4px;
+}
+
+.hps-dot--done {
+    background: #3e7df5;
+    opacity: 0.35;
+}
+
+/* ── Content ─────────────────────────────────────────────────────────────────── */
+.hps-content {
+    flex: 1;
+    padding: 20px 20px 8px;
+    overflow-y: auto;
+}
+
+/* ── Error ───────────────────────────────────────────────────────────────────── */
+.hps-error {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #d94f4f !important;
+    text-align: center;
+    padding: 10px 20px;
+    background: #fff0f0;
+    margin: 0 20px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(217, 79, 79, 0.15);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────────── */
+.hps-footer {
+    display: flex;
+    gap: 10px;
+    padding: 16px 20px 36px;
+}
+
+.hps-btn-back.MuiButton-root {
+    flex: 1;
+    height: 54px;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: none;
+    background: #ffffff;
+    color: #3e7df5;
+    border: 1.5px solid #dde3ea;
+    box-shadow: none;
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-btn-back.MuiButton-root:hover {
+    background: #dce9ff;
+    border-color: #3e7df5;
+}
+
+.hps-btn-next.MuiButton-root {
+    flex: 2;
+    height: 54px;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    text-transform: none;
+    background: #3e7df5;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(62, 125, 245, 0.32);
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-btn-next.MuiButton-root:hover {
+    background: #2d62d4;
+    box-shadow: 0 12px 32px rgba(62, 125, 245, 0.40);
+    transform: translateY(-1px);
+}
+
+.hps-btn-next.MuiButton-root:disabled {
+    background: #b8ccf8;
+    color: #ffffff;
+    box-shadow: none;
+    transform: none;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   SHARED STEP STYLES — used across Step1–Step6
+   ════════════════════════════════════════════════════════════════════ */
+
+.hps-step-desc {
+    font-size: 14px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 600 !important;
+    color: #7a8799 !important;
+    margin-bottom: 20px !important;
+    line-height: 1.55 !important;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────────── */
+.hps-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 20px rgba(62, 125, 245, 0.07);
+    border: 1px solid rgba(221, 227, 234, 0.8);
+}
+
+.hps-card-title {
+    font-size: 11px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+    color: #7a8799 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px !important;
+}
+
+/* ── Option toggle buttons ───────────────────────────────────────────────────── */
+.hps-option-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.hps-option-btn.MuiButton-root {
+    height: 46px;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: none;
+    border: 1.5px solid #dde3ea;
+    background: #f4f6f8;
+    color: #7a8799;
+    flex: 1;
+    min-width: 80px;
+    box-shadow: none;
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-option-btn.MuiButton-root:hover {
+    border-color: #3e7df5;
+    background: #f0f5ff;
+    color: #3e7df5;
+}
+
+.hps-option-btn--selected.MuiButton-root {
+    background: #3e7df5;
+    color: #ffffff;
+    border-color: #3e7df5;
+    box-shadow: 0 4px 14px rgba(62, 125, 245, 0.28);
+}
+
+.hps-option-btn--selected.MuiButton-root:hover {
+    background: #2d62d4;
+    color: #ffffff;
+}
+
+/* ── Switch rows ─────────────────────────────────────────────────────────────── */
+.hps-check-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0f3f6;
+}
+
+.hps-check-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.hps-check-row:first-child {
+    padding-top: 0;
+}
+
+.hps-check-label {
+    font-size: 15px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 700 !important;
+    color: #010101 !important;
+}
+
+.hps-check-row .MuiSwitch-root {
+    margin-right: -8px;
+}
+
+.hps-check-row .MuiSwitch-switchBase.Mui-checked {
+    color: #3e7df5 !important;
+}
+
+.hps-check-row .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+    background-color: #3e7df5 !important;
+}
+
+/* ── Add-item input row ──────────────────────────────────────────────────────── */
+.hps-add-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.hps-add-input .MuiOutlinedInput-root {
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    background: #f4f6f8;
+}
+
+.hps-add-input .MuiOutlinedInput-notchedOutline {
+    border-color: #dde3ea;
+}
+
+.hps-add-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #3e7df5;
+}
+
+.hps-add-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #3e7df5;
+    border-width: 1.5px;
+}
+
+.hps-add-input .MuiInputBase-input::placeholder {
+    color: #b0bac5;
+    opacity: 1;
+    font-family: 'Nunito', sans-serif;
+}
+
+.hps-add-btn.MuiIconButton-root {
+    background: #3e7df5;
+    color: #ffffff;
+    border-radius: 12px;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(62, 125, 245, 0.28);
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-add-btn.MuiIconButton-root:hover {
+    background: #2d62d4;
+    box-shadow: 0 6px 18px rgba(62, 125, 245, 0.38);
+    transform: scale(1.05);
+}
+
+/* ── Chips list ──────────────────────────────────────────────────────────────── */
+.hps-chips-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hps-chip.MuiChip-root {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 10px;
+    background: #dce9ff;
+    color: #3e7df5;
+    height: 34px;
+    transition: 0.15s ease;
+}
+
+.hps-chip.MuiChip-root:hover {
+    background: #c8dcff;
+}
+
+.hps-chip.MuiChip-root .MuiChip-deleteIcon {
+    color: #3e7df5;
+    font-size: 16px;
+    opacity: 0.65;
+    transition: 0.15s ease;
+}
+
+.hps-chip.MuiChip-root .MuiChip-deleteIcon:hover {
+    opacity: 1;
+    color: #d94f4f;
+}
+
+/* ── Selectable symptom chips ────────────────────────────────────────────────── */
+.hps-symptom-chip.MuiChip-root {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 10px;
+    background: #f4f6f8;
+    color: #7a8799;
+    height: 36px;
+    border: 1.5px solid #dde3ea;
+    cursor: pointer;
+    transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hps-symptom-chip.MuiChip-root:hover {
+    border-color: #3e7df5;
+    background: #f0f5ff;
+    color: #3e7df5;
+}
+
+.hps-symptom-chip--selected.MuiChip-root {
+    background: #dce9ff;
+    color: #3e7df5;
+    border-color: #3e7df5;
+    box-shadow: 0 2px 8px rgba(62, 125, 245, 0.15);
+}

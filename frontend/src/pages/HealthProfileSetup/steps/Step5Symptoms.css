@@ -1,0 +1,15 @@
+/* Step5Symptoms.css */
+
+.step5-root {}
+
+.step5-selected-note {
+    text-align: center;
+    padding: 10px 0 4px;
+}
+
+.step5-selected-text {
+    font-size: 13px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+    color: #3e7df5 !important;
+}

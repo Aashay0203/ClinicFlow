@@ -43,6 +43,39 @@
     padding: 2rem 1.5rem 0 1.5rem;
 }
 
+.my-appointment-top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+}
+
+.my-appointment-back-btn {
+    background: #ffffff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.my-appointment-back-btn:hover {
+    background: var(--blue-light) !important;
+    color: var(--blue) !important;
+}
+
+.my-appointment-home-btn {
+    background: #ffffff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.my-appointment-home-btn:hover {
+    background: var(--blue-light) !important;
+    color: var(--blue) !important;
+}
+
 .greeting-text {
     font-size: 0.85rem;
     color: var(--text-gray);

@@ -1,0 +1,17 @@
+/* Step1Conditions.css */
+
+.step1-root {}
+
+.step1-label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.step1-check-desc {
+    font-size: 12px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 600 !important;
+    color: #7a8799 !important;
+    line-height: 1.3 !important;
+}

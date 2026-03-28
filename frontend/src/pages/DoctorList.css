@@ -6,6 +6,40 @@
     font-family: 'Inter', system-ui, sans-serif;
 }
 
+.list-top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 1rem auto;
+}
+
+.list-back-btn {
+    background: #ffffff !important;
+    border: 1px solid #dde3ea !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.list-back-btn:hover {
+    background: #dce9ff !important;
+    color: #3e7df5 !important;
+}
+
+.list-home-btn {
+    background: #ffffff !important;
+    border: 1px solid #dde3ea !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.list-home-btn:hover {
+    background: #dce9ff !important;
+    color: #3e7df5 !important;
+}
+
 /* Header and Search Area */
 .list-header {
 

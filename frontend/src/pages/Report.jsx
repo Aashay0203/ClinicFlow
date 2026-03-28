@@ -46,7 +46,7 @@ function Report() {
   const fetchReport = async () => {
     try {
       setLoading(true);
-      const response = await instance.get("/reports");
+      const response = await instance.get("/report");
       setReports(response.data.reports || []);
     } catch (err) {
       console.error("Failed to fetch reports:", err);

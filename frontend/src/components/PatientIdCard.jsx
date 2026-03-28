@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { Box, Typography, Button, Snackbar, Alert } from "@mui/material";
-import { Download, IosShare, CheckCircle } from "@mui/icons-material";
+import DownloadIcon from "@mui/icons-material/Download";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import html2canvas from "html2canvas";
 import "./PatientIdCard.css";
 
@@ -170,7 +172,7 @@ const PatientIDCard = ({
         <Box className="pid-footer">
           {abhaId ? (
             <Box className="pid-abha-row">
-              <CheckCircle className="pid-abha-icon" />
+              <CheckCircleIcon className="pid-abha-icon" />
               <Typography className="pid-abha-text">ABHA: {abhaId}</Typography>
             </Box>
           ) : (
@@ -190,7 +192,7 @@ const PatientIDCard = ({
           className={`pid-btn pid-btn--outline${downloading ? " pid-btn--downloading" : ""}`}
           onClick={handleDownload}
           disabled={downloading}
-          startIcon={<Download />}
+          startIcon={<DownloadIcon />}
           variant="outlined"
           disableElevation
         >
@@ -200,7 +202,7 @@ const PatientIDCard = ({
         <Button
           className="pid-btn pid-btn--filled"
           onClick={handleShare}
-          startIcon={<IosShare />}
+          startIcon={<IosShareIcon />}
           variant="contained"
           disableElevation
         >
