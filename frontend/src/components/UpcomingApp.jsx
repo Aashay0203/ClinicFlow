@@ -12,7 +12,7 @@ function UpcomingAppBox() {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const res = await instance.get("/appointment/my-appointements");
+        const res = await instance.get("/appointments/my-appointements");
         setMyAppointments(res.data.appointments);
       } catch (err) {
         setError("Failed to load appointments.");

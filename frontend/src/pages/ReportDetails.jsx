@@ -151,7 +151,7 @@ function ReportDetails() {
       }
 
       try {
-        const res = await instance.get(`/report/${id}/ai-status`);
+        const res = await instance.get(`/reports/${id}/ai-status`);
         const { aiStatus, aiSummary, aiError } = res.data;
 
         if (aiStatus === "completed") {
@@ -189,7 +189,7 @@ function ReportDetails() {
   useEffect(() => {
     const fetchReport = async () => {
       try {
-        const res = await instance.get(`/report/${id}`);
+        const res = await instance.get(`/reports/${id}`);
         const fetchedReport = res.data.report;
         setReport(fetchedReport);
 
@@ -216,7 +216,7 @@ function ReportDetails() {
     try {
       setAiLoading(true);
       // Fire the trigger — backend returns immediately, AI runs in background
-      await instance.post(`/report/${id}/regenerate-summary`);
+      await instance.post(`/reports/${id}/regenerate-summary`);
       // Now poll until done — aiLoading stays true the whole time
       startPolling();
     } catch (err) {
@@ -233,7 +233,7 @@ function ReportDetails() {
   const handleDelete = async () => {
     try {
       setDeleting(true);
-      await instance.delete(`/report/${id}`);
+      await instance.delete(`/reports/${id}`);
       navigate("/reports", { replace: true });
     } catch (err) {
       alert(err.response?.data?.message || "Delete failed");
@@ -471,7 +471,10 @@ function ReportDetails() {
                   </Typography>
                   <Box className="rd-ai-summary-text">
                     {normalizedAiSummary.plainSummary.map((point, idx) => (
-                      <Typography key={`${point}-${idx}`} className="rd-ai-summary-point">
+                      <Typography
+                        key={`${point}-${idx}`}
+                        className="rd-ai-summary-point"
+                      >
                         {point}
                       </Typography>
                     ))}

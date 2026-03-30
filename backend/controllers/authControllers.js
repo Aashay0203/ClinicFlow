@@ -57,7 +57,7 @@ export const doctorSignup = async (req, res) => {
             speciality,
             startTime,
             avgConsultTime,
-            fee
+            fees,
         } = req.body;
 
         // 1️⃣ Check doctor exists
@@ -78,7 +78,7 @@ export const doctorSignup = async (req, res) => {
             speciality,
             startTime,
             avgConsultTime,
-            fee
+            fees
         });
 
         // 4️⃣ Generate token

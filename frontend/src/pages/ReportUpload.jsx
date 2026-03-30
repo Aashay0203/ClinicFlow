@@ -94,7 +94,7 @@ function ReportUpload() {
         ),
       );
 
-      const response = await instance.post("/report/upload", uploadData, {
+      const response = await instance.post("/reports/upload", uploadData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -24,9 +24,7 @@ export const appointmentBook = async (req, res) => {
             });
         }
 
-        // Normalize date to UTC midnight
-        const appointmentDate = new Date(date);
-        appointmentDate.setUTCHours(0, 0, 0, 0);
+        const appointmentDate = date;
 
         // 1. ❌ Prevent double booking (KEEP THIS!)
         const existing = await Appointment.findOne({

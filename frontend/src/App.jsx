@@ -21,7 +21,8 @@ const HealthProfileSetup = lazy(
 const HealthProfile = lazy(
   () => import("./pages/HealthProfile/HealthProfile.jsx"),
 );
-
+const DoctorHome = lazy(() => import("./pages/DoctorHome"));
+const PatientDetail = lazy(() => import("./pages/PatientDetails"));
 function PageLoader() {
   return (
     <Box
@@ -61,6 +62,11 @@ export default function App() {
             <Route
               path="/health-profile/setup"
               element={<HealthProfileSetup />}
+            />
+            <Route path="/doctor/home" element={<DoctorHome />} />
+            <Route
+              path="/doctor/patient/:appointmentId"
+              element={<PatientDetail />}
             />
           </Routes>
         </Suspense>

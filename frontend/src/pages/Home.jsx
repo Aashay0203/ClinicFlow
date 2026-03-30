@@ -40,7 +40,7 @@ function Home() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await instance.get("/doctor/allDoctors");
+      const res = await instance.get("/doctors/allDoctors");
       setDoctors(res.data.allDoctors);
     } catch (err) {
       setError("Failed to load doctors. Please try again later.");

@@ -25,7 +25,7 @@ export default function DoctorSignup() {
     setError("");
     setLoading(true);
     try {
-      const res = await instance.post("/doctor/signup", {
+      const res = await instance.post("/auth/doctorSignup", {
         email,
         phone,
         password,

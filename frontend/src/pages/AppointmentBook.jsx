@@ -82,7 +82,7 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
     const fetchDoctor = async () => {
       try {
         setLoading(true);
-        const res = await instance.get(`/doctor/${doctorId}`);
+        const res = await instance.get(`/doctors/${doctorId}`);
         const data = res.data.details || res.data;
         setDoctor(data);
       } catch (err) {
@@ -124,7 +124,7 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
       setSlotsLoading(true);
       try {
         const res = await instance.get(
-          `/appointment/booked-slots?doctorId=${doctorId}&date=${selectedDate.isoDate}`,
+          `/appointments/booked-slots?doctorId=${doctorId}&date=${selectedDate.isoDate}`,
         );
         setBookedSlots(res.data.bookedSlots || []);
       } catch (err) {
@@ -171,7 +171,7 @@ export default function SlotSelection({ activeDays = ACTIVE_DAYS }) {
         slotTime: selectedTime, // "HH:MM" 24-hr
       };
 
-      const res = await instance.post("/appointment/book", payload);
+      const res = await instance.post("/appointments/book", payload);
 
       navigate("/payment", {
         state: {

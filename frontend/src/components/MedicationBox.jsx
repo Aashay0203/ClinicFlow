@@ -36,7 +36,7 @@ function MedicationBox() {
     // Reset all meds to pending at midnight IST
     const timer = setTimeout(async () => {
       try {
-        await instance.patch("/medication/reset-daily");
+        await instance.patch("/medications/reset-daily");
         setMeds((prev) => prev.map((med) => ({ ...med, taken: false })));
       } catch (err) {
         console.log(err);
@@ -48,7 +48,7 @@ function MedicationBox() {
 
   const fetchMed = async () => {
     try {
-      const res = await instance.get("/medication/");
+      const res = await instance.get("/medications/");
       setMeds(res.data.medication);
     } catch (err) {
       console.log(err);
@@ -65,7 +65,7 @@ function MedicationBox() {
           med._id === id ? { ...med, taken: !currentStatus } : med,
         ),
       );
-      await instance.patch(`/medication/${id}`, { taken: !currentStatus });
+      await instance.patch(`/medications/${id}`, { taken: !currentStatus });
     } catch (err) {
       // Revert if API fails
       setMeds((prev) =>

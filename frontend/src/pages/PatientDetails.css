@@ -1,0 +1,455 @@
+/* ============================================
+   PatientDetail — pd-* namespace
+   ============================================ */
+
+.pd-page {
+    min-height: 100vh;
+    background: var(--bg, #e8ecee);
+    font-family: "Nunito", sans-serif;
+    padding-bottom: 48px;
+}
+
+/* ── Header ──────────────────────────────── */
+
+.pd-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--bg, #e8ecee);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.pd-header-title {
+    font-family: "Urbanist", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: #010101 !important;
+    letter-spacing: -0.2px !important;
+}
+
+.pd-header-spacer {
+    width: 40px;
+}
+
+.pd-back-btn {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.pd-back-btn:hover {
+    background: #dce9ff !important;
+    color: #3e7df5 !important;
+}
+
+/* ── Not Found ───────────────────────────── */
+
+.pd-not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #7a8799;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ── Content ─────────────────────────────── */
+
+.pd-content {
+    padding: 0 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ── Shared Card ─────────────────────────── */
+
+.pd-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Identity Card ───────────────────────── */
+
+.pd-identity-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.pd-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #3e7df5 0%, #2d62d4 100%);
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pd-identity-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.pd-patient-name {
+    font-family: "Urbanist", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #010101;
+    margin: 0 0 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pd-patient-contact {
+    font-size: 13px;
+    color: #7a8799;
+    font-weight: 600;
+    margin: 0;
+}
+
+.pd-token-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #dce9ff;
+    border-radius: 14px;
+    padding: 8px 14px;
+    flex-shrink: 0;
+    gap: 2px;
+}
+
+.pd-token-label {
+    font-size: 10px;
+    color: #7a8799;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.pd-token-value {
+    font-family: "Urbanist", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #3e7df5;
+    line-height: 1;
+}
+
+/* ── Meta Card ───────────────────────────── */
+
+.pd-meta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pd-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pd-meta-key {
+    font-size: 13px;
+    color: #7a8799;
+    font-weight: 600;
+}
+
+.pd-meta-val {
+    font-size: 14px;
+    color: #010101;
+    font-weight: 700;
+    font-family: "Urbanist", sans-serif;
+}
+
+.pd-capitalize {
+    text-transform: capitalize;
+}
+
+.pd-meta-divider {
+    height: 1px;
+    background: #dde3ea;
+}
+
+.pd-payment-badge {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: "Urbanist", sans-serif;
+    text-transform: capitalize;
+}
+
+.pd-paid {
+    background: #d5eab3;
+    color: #3a7d11;
+}
+
+.pd-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* ── Critical Card ───────────────────────── */
+
+.pd-critical-card {
+    border: 1.5px solid rgba(217, 79, 79, 0.18);
+    background: #fff9f9;
+}
+
+.pd-card-title {
+    font-family: "Urbanist", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #010101;
+    margin: 0 0 14px;
+}
+
+.pd-title-critical {
+    color: #c0392b;
+}
+
+/* ── AI Card ─────────────────────────────── */
+
+.pd-ai-card {
+    background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 70%);
+    border: 1.5px solid #dce9ff;
+}
+
+.pd-ai-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.pd-ai-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #3e7df5;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pd-ai-icon {
+    font-size: 18px !important;
+}
+
+.pd-card-title-inline {
+    margin: 0 0 2px;
+}
+
+.pd-ai-sub {
+    font-size: 11px;
+    color: #7a8799;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ── Sections inside card ────────────────── */
+
+.pd-section {
+    margin-bottom: 16px;
+}
+
+.pd-section:last-child {
+    margin-bottom: 0;
+}
+
+.pd-sub-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: #7a8799;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0 0 8px;
+}
+
+/* ── Chips ───────────────────────────────── */
+
+.pd-chips-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pd-chip {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: "Nunito", sans-serif;
+    line-height: 1.3;
+}
+
+.pd-chip-blood {
+    background: #ffe4e4;
+    color: #c0392b;
+}
+
+.pd-chip-allergy {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.pd-chip-flag {
+    background: #fff3f3;
+    color: #c0392b;
+}
+
+.pd-chip-cond {
+    background: #dce9ff;
+    color: #2d62d4;
+}
+
+.pd-chip-symptom {
+    background: #f0f5ff;
+    color: #3e7df5;
+}
+
+.pd-chip-family {
+    background: #e8ecee;
+    color: #4a5568;
+}
+
+.pd-chip-lifestyle {
+    background: #fff0f0;
+    color: #d94f4f;
+}
+
+/* ── Lab Grid ────────────────────────────── */
+
+.pd-lab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.pd-lab-item {
+    background: #f4f7fa;
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.pd-lab-key {
+    font-size: 10px;
+    color: #7a8799;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.pd-lab-val {
+    font-family: "Urbanist", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #010101;
+    line-height: 1;
+}
+
+/* ── Bullet List ─────────────────────────── */
+
+.pd-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pd-bullet-list li {
+    font-size: 13px;
+    color: #010101;
+    font-weight: 600;
+    padding: 9px 12px 9px 16px;
+    background: #f4f7fa;
+    border-radius: 10px;
+    line-height: 1.4;
+    position: relative;
+}
+
+.pd-bullet-list li::before {
+    content: "•";
+    color: #3e7df5;
+    font-weight: 800;
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ── Loading / No Profile ────────────────── */
+
+.pd-loading-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.pd-loading-text {
+    color: #7a8799;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.pd-no-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 32px;
+    text-align: center;
+}
+
+.pd-no-profile-icon {
+    font-size: 36px !important;
+    color: #dde3ea !important;
+}
+
+.pd-no-profile-text {
+    color: #7a8799;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (min-width: 640px) {
+    .pd-content {
+        padding: 0 24px;
+        max-width: 680px;
+    }
+
+    .pd-lab-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

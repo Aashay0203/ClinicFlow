@@ -163,26 +163,26 @@ All routes require `Authorization: Bearer <token>` unless marked **Public**.
 
 ---
 
-### Appointments — `/api/appointment`
+### Appointments — `/api/appointments`
 
-| Method | Endpoint                            | Auth    | Description                                                          |
-| ------ | ----------------------------------- | ------- | -------------------------------------------------------------------- |
-| `GET`  | `/api/appointment/my-appointments`  | 🔒 User | Returns a protected test response with current user id.              |
-| `GET`  | `/api/appointment/booked-slots`     | 🔒 User | Returns already booked slots for a doctor on a given date.           |
-| `POST` | `/api/appointment/book`             | 🔒 User | Validates slot and creates a Razorpay order for appointment booking. |
-| `GET`  | `/api/appointment/my-appointements` | 🔒 User | Returns logged-in patient appointments with doctor details.          |
-| `GET`  | `/api/appointment/:id/status`       | 🔒 User | Returns queue position, ETA, and live appointment status.            |
-| `PUT`  | `/api/appointment/:id/arrive`       | 🔒 User | Verifies appointment PIN and marks patient as arrived.               |
+| Method | Endpoint                             | Auth    | Description                                                          |
+| ------ | ------------------------------------ | ------- | -------------------------------------------------------------------- |
+| `GET`  | `/api/appointments/my-appointments`  | 🔒 User | Returns a protected test response with current user id.              |
+| `GET`  | `/api/appointments/booked-slots`     | 🔒 User | Returns already booked slots for a doctor on a given date.           |
+| `POST` | `/api/appointments/book`             | 🔒 User | Validates slot and creates a Razorpay order for appointment booking. |
+| `GET`  | `/api/appointments/my-appointements` | 🔒 User | Returns logged-in patient appointments with doctor details.          |
+| `GET`  | `/api/appointments/:id/status`       | 🔒 User | Returns queue position, ETA, and live appointment status.            |
+| `PUT`  | `/api/appointments/:id/arrive`       | 🔒 User | Verifies appointment PIN and marks patient as arrived.               |
 
 ---
 
-### Doctor — `/api/doctor`
+### Doctor — `/api/doctors`
 
-| Method | Endpoint                 | Auth     | Description                                                      |
-| ------ | ------------------------ | -------- | ---------------------------------------------------------------- |
-| `POST` | `/api/doctor/signup`     | 🔒 Admin | Creates doctor account (admin-only) and returns JWT token.       |
-| `GET`  | `/api/doctor/allDoctors` | Public   | Returns doctor listing with key profile and availability fields. |
-| `GET`  | `/api/doctor/:id`        | Public   | Returns full details for a specific doctor.                      |
+| Method | Endpoint                  | Auth     | Description                                                      |
+| ------ | ------------------------- | -------- | ---------------------------------------------------------------- |
+| `POST` | `/api/doctors/signup`     | 🔒 Admin | Creates doctor account (admin-only) and returns JWT token.       |
+| `GET`  | `/api/doctors/allDoctors` | Public   | Returns doctor listing with key profile and availability fields. |
+| `GET`  | `/api/doctors/:id`        | Public   | Returns full details for a specific doctor.                      |
 
 ---
 
@@ -198,14 +198,14 @@ All routes require `Authorization: Bearer <token>` unless marked **Public**.
 
 ---
 
-### Medication — `/api/medication`
+### Medication — `/api/medications`
 
-| Method  | Endpoint                      | Auth    | Description                                              |
-| ------- | ----------------------------- | ------- | -------------------------------------------------------- |
-| `GET`   | `/api/medication/`            | 🔒 User | Returns all medications for the logged-in user.          |
-| `POST`  | `/api/medication/`            | 🔒 User | Creates a new medication record for the user.            |
-| `PATCH` | `/api/medication/reset-daily` | 🔒 User | Resets the taken flag to false for all user medications. |
-| `PATCH` | `/api/medication/:id`         | 🔒 User | Updates the taken status of one medication entry.        |
+| Method  | Endpoint                       | Auth    | Description                                              |
+| ------- | ------------------------------ | ------- | -------------------------------------------------------- |
+| `GET`   | `/api/medications/`            | 🔒 User | Returns all medications for the logged-in user.          |
+| `POST`  | `/api/medications/`            | 🔒 User | Creates a new medication record for the user.            |
+| `PATCH` | `/api/medications/reset-daily` | 🔒 User | Resets the taken flag to false for all user medications. |
+| `PATCH` | `/api/medications/:id`         | 🔒 User | Updates the taken status of one medication entry.        |
 
 ---
 
@@ -219,25 +219,25 @@ All routes require `Authorization: Bearer <token>` unless marked **Public**.
 
 ---
 
-### Queue — `/api/queue`
+### Queue — `/api/queues`
 
-| Method | Endpoint          | Auth      | Description                                                       |
-| ------ | ----------------- | --------- | ----------------------------------------------------------------- |
-| `PUT`  | `/api/queue/next` | 🔒 Doctor | Advances doctor queue to next token and marks previous as served. |
+| Method | Endpoint           | Auth      | Description                                                       |
+| ------ | ------------------ | --------- | ----------------------------------------------------------------- |
+| `PUT`  | `/api/queues/next` | 🔒 Doctor | Advances doctor queue to next token and marks previous as served. |
 
 ---
 
-### Report — `/api/report`
+### Report — `/api/reports`
 
-| Method   | Endpoint                             | Auth    | Description                                                                    |
-| -------- | ------------------------------------ | ------- | ------------------------------------------------------------------------------ |
-| `POST`   | `/api/report/upload`                 | 🔒 User | Uploads report to Cloudinary, saves metadata, starts AI background processing. |
-| `GET`    | `/api/report/`                       | 🔒 User | Returns all reports for the logged-in user.                                    |
-| `GET`    | `/api/report/:id/ai-status`          | 🔒 User | Returns AI processing state, summary, and AI error for one report.             |
-| `POST`   | `/api/report/:id/regenerate-summary` | 🔒 User | Resets AI state and re-triggers background summary generation.                 |
-| `GET`    | `/api/report/:id`                    | 🔒 User | Returns one report document for the user.                                      |
-| `PATCH`  | `/api/report/:id`                    | 🔒 User | Updates report metadata fields.                                                |
-| `DELETE` | `/api/report/:id`                    | 🔒 User | Deletes report from Cloudinary and database.                                   |
+| Method   | Endpoint                              | Auth    | Description                                                                    |
+| -------- | ------------------------------------- | ------- | ------------------------------------------------------------------------------ |
+| `POST`   | `/api/reports/upload`                 | 🔒 User | Uploads report to Cloudinary, saves metadata, starts AI background processing. |
+| `GET`    | `/api/reports/`                       | 🔒 User | Returns all reports for the logged-in user.                                    |
+| `GET`    | `/api/reports/:id/ai-status`          | 🔒 User | Returns AI processing state, summary, and AI error for one report.             |
+| `POST`   | `/api/reports/:id/regenerate-summary` | 🔒 User | Resets AI state and re-triggers background summary generation.                 |
+| `GET`    | `/api/reports/:id`                    | 🔒 User | Returns one report document for the user.                                      |
+| `PATCH`  | `/api/reports/:id`                    | 🔒 User | Updates report metadata fields.                                                |
+| `DELETE` | `/api/reports/:id`                    | 🔒 User | Deletes report from Cloudinary and database.                                   |
 
 ---
 
@@ -275,7 +275,17 @@ All routes require `Authorization: Bearer <token>` unless marked **Public**.
 
 ### `reportSchema`
 
-`userId` · `fileName` · `fileUrl` · `fileType` · `fileSize` · `cloudinaryPublicId` · `reportType` · `doctorClinicName` · `reportDate` · `uploadedBy` · `tags` · `uploadedAt` · `aiStatus` · `aiSummary.testTable` · `aiSummary.plainSummary` · `aiSummary.extractedHealthData` · `aiSummary.generatedAt` · `aiError` · `createdAt` · `updatedAt`
+`userId` · `fileName` · `fileUrl` · `fileType` · `fileSize` · `cloudinaryPublicId` · `reportType` · `doctorClinicName` · `reportDate` · `uploadedBy` · `tags` · `uploadedAt` · `aiStatus` · `aiSummary.testTable` · `aiSummary.plainSummary` · `aiSummary.extractedHealthData` · `aiSummary.reportTypeDetected` · `aiSummary.generatedAt` · `aiError` · `createdAt` · `updatedAt`
+
+**aiStatus values:**
+
+- `'pending'` — Just uploaded, AI processing not started
+- `'processing'` — Gemini API call in progress
+- `'completed'` — AI analysis complete, all fields populated
+- `'failed'` — AI error occurred; check `aiError` field for reason
+
+**plainSummary format:**
+Array of 4–6 Hinglish strings in format: `"🟢 Hemoglobin normal hai, khoon ki kami nahi"` or `"🟡 💡 Oily khana kam karein"`. Each string must start with severity emoji, no medical jargon.
 
 ### `patientHealthSumSchema`
 

@@ -77,23 +77,23 @@ POST /api/auth/signup     → signup()        — hash password, create User, re
 POST /api/auth/login      → login()         — find User or Doctor, compare hash, return JWT
 ```
 
-### Appointments (`/api/appointment` ← `appointment.js` ← `appointmentController.js`)
+### Appointments (`/api/appointments` ← `appointment.js` ← `appointmentController.js`)
 
 ```
-GET  /api/appointment/my-appointments    → testProtected()     — dev/test endpoint
-GET  /api/appointment/booked-slots       → getBookedSlots()    — query Appointment by doctorId+date
-POST /api/appointment/book               → bookAppointment()   — validate slot → create Razorpay order
-GET  /api/appointment/my-appointements   → getMyAppointments() — populate doctorId on Appointment
-GET  /api/appointment/:id/status         → getStatus()         — calls calculateETA(), returns queue info
-PUT  /api/appointment/:id/arrive         → arriveAppointment() — bcrypt compare PIN → set status=arrived
+GET  /api/appointments/my-appointments    → testProtected()     — dev/test endpoint
+GET  /api/appointments/booked-slots       → getBookedSlots()    — query Appointment by doctorId+date
+POST /api/appointments/book               → bookAppointment()   — validate slot → create Razorpay order
+GET  /api/appointments/my-appointements   → getMyAppointments() — populate doctorId on Appointment
+GET  /api/appointments/:id/status         → getStatus()         — calls calculateETA(), returns queue info
+PUT  /api/appointments/:id/arrive         → arriveAppointment() — bcrypt compare PIN → set status=arrived
 ```
 
-### Doctor (`/api/doctor` ← `doctorRoutes.js` ← `doctorController.js`)
+### Doctor (`/api/doctors` ← `doctorRoutes.js` ← `doctorController.js`)
 
 ```
-POST /api/doctor/signup       → doctorSignup()   — adminOnly middleware, create Doctor, return JWT
-GET  /api/doctor/allDoctors   → getAllDoctors()  — find all, select public fields
-GET  /api/doctor/:id          → getDoctorById()  — findById Doctor
+POST /api/doctors/signup       → doctorSignup()   — adminOnly middleware, create Doctor, return JWT
+GET  /api/doctors/allDoctors   → getAllDoctors()  — find all, select public fields
+GET  /api/doctors/:id          → getDoctorById()  — findById Doctor
 ```
 
 ### Health Profile (`/api/healthProfile` ← `healthProfileRoute.js` ← `healthProfileController.js`)
@@ -106,13 +106,13 @@ GET    /api/healthProfile/ai-only    → getAiSection()       — return only ai
 GET    /api/healthProfile/user-only  → getUserSection()     — return only userProvided field
 ```
 
-### Medication (`/api/medication` ← `medicationRoute.js` ← `medicationController.js`)
+### Medication (`/api/medications` ← `medicationRoute.js` ← `medicationController.js`)
 
 ```
-GET   /api/medication/              → getMedications()   — find all by userId
-POST  /api/medication/              → addMedication()    — create new Medication doc
-PATCH /api/medication/reset-daily   → resetDaily()       — updateMany taken=false for userId
-PATCH /api/medication/:id           → updateTaken()      — findByIdAndUpdate taken field
+GET   /api/medications/              → getMedications()   — find all by userId
+POST  /api/medications/              → addMedication()    — create new Medication doc
+PATCH /api/medications/reset-daily   → resetDaily()       — updateMany taken=false for userId
+PATCH /api/medications/:id           → updateTaken()      — findByIdAndUpdate taken field
 ```
 
 ### Payment (`/api/payment` ← `paymentRoute.js` ← `paymentController.js`)
@@ -123,22 +123,22 @@ POST /api/payment/upi-confirm  → upiConfirm()       — confirm UPI → assign
 POST /api/payment/cash-confirm → cashConfirm()      — skip payment → assign token, generate PIN, set paymentStatus=cash
 ```
 
-### Queue (`/api/queue` ← `queueRoute.js` ← `queueController.js`)
+### Queue (`/api/queues` ← `queueRoute.js` ← `queueController.js`)
 
 ```
-PUT /api/queue/next   → nextInQueue()   — increment Queue.currentNumber, mark previous Appointment as served
+PUT /api/queues/next   → nextInQueue()   — increment Queue.currentNumber, mark previous Appointment as served
 ```
 
-### Report (`/api/report` ← `reportRoute.js` ← `reportController.js`)
+### Report (`/api/reports` ← `reportRoute.js` ← `reportController.js`)
 
 ```
-POST  /api/report/upload                   → uploadReport()         — upload to Cloudinary, save Report doc, fire processReportInBackground()
-GET   /api/report/                         → getReports()           — find all by userId
-GET   /api/report/:id/ai-status            → getAiStatus()          — return aiStatus + aiSummary + aiError
-POST  /api/report/:id/regenerate-summary   → regenerateSummary()    — reset aiStatus=pending, re-fire processReportInBackground()
-GET   /api/report/:id                      → getReport()            — findById, verify ownership
-PATCH /api/report/:id                      → updateReport()         — update metadata fields
-DELETE /api/report/:id                     → deleteReport()         — Cloudinary delete + deleteOne from DB
+POST  /api/reports/upload                   → uploadReport()         — upload to Cloudinary, save Report doc, fire processReportInBackground()
+GET   /api/reports/                         → getReports()           — find all by userId
+GET   /api/reports/:id/ai-status            → getAiStatus()          — return aiStatus + aiSummary + aiError
+POST  /api/reports/:id/regenerate-summary   → regenerateSummary()    — reset aiStatus=pending, re-fire processReportInBackground()
+GET   /api/reports/:id                      → getReport()            — findById, verify ownership
+PATCH /api/reports/:id                      → updateReport()         — update metadata fields
+DELETE /api/reports/:id                     → deleteReport()         — Cloudinary delete + deleteOne from DB
 ```
 
 ### User (`/api/user` ← `userRoute.js` ← `userController.js`)
@@ -215,12 +215,22 @@ POST  /api/user/profile/picture  → uploadPicture()     — Cloudinary upload �
   userId(ref:User), fileName, fileUrl, fileType, fileSize,
   cloudinaryPublicId, reportType, doctorClinicName, reportDate,
   uploadedBy, tags([]),
-  aiStatus('pending'|'processing'|'done'|'failed'),
-  aiSummary: { testTable, plainSummary, extractedHealthData, generatedAt },
+  aiStatus('pending'|'processing'|'completed'|'failed'),
+  aiSummary: { testTable([]), plainSummary([]), extractedHealthData({}), reportTypeDetected, generatedAt },
   aiError,
   createdAt, updatedAt
 }
 ```
+
+**aiSummary structure:**
+
+- `testTable`: Array of { testName, value, unit, referenceRange, status } objects. Empty if no lab values detected.
+- `plainSummary`: Array of 4-6 Hinglish strings, each prefixed with emoji (🟢/🟡/🔴/💡/👨‍⚕️). Human-readable health summary.
+- `extractedHealthData`: Object with bloodGroup, hemoglobin, wbc, platelets, bloodSugar, creatinine, urea, sodium, potassium, sgpt, sgot, bilirubin, cholesterol, detectedAllergies[], currentMedications[]
+- `reportTypeDetected`: Auto-detected report category (CBC, LFT, KFT, Lipid Profile, etc.) — helps categorize uploads
+- `generatedAt`: Timestamp when this aiSummary was generated
+
+````
 
 ### PatientHealthSummary
 
@@ -246,7 +256,7 @@ POST  /api/user/profile/picture  → uploadPicture()     — Cloudinary upload �
   quickSummary: { criticalAlerts([]), shortSummary, lastGenerated },
   createdAt, updatedAt
 }
-```
+````
 
 ---
 
@@ -255,7 +265,7 @@ POST  /api/user/profile/picture  → uploadPicture()     — Cloudinary upload �
 | File                | Applied to                 | What it does                                                                        |
 | ------------------- | -------------------------- | ----------------------------------------------------------------------------------- |
 | `authmiddleware.js` | All protected routes       | Reads `Authorization: Bearer <token>`, verifies JWT, sets `req.user = { id, role }` |
-| `adminOnly.js`      | `POST /api/doctor/signup`  | Checks `req.user.role === 'admin'`, returns 403 otherwise                           |
+| `adminOnly.js`      | `POST /api/doctors/signup` | Checks `req.user.role === 'admin'`, returns 403 otherwise                           |
 | `roleMiddleware.js` | Queue routes (doctor-only) | Generic role checker — `allowRoles('doctor')` pattern                               |
 
 ---
@@ -277,11 +287,50 @@ POST  /api/user/profile/picture  → uploadPicture()     — Cloudinary upload �
 
 ```json
 {
-  "testTable": [],
-  "plainSummary": "string",
-  "extractedHealthData": { "labValues": {}, "flags": {}, "medications": [] }
+  "testTable": [
+    {
+      "testName": "...",
+      "value": "...",
+      "unit": "...",
+      "referenceRange": "...",
+      "status": "High|Low|Normal|Critical|Unknown"
+    }
+  ],
+  "plainSummary": [
+    "🟢 Normal result...",
+    "🟡 Mild concern...",
+    "🔴 Serious issue...",
+    "🟡 💡 Diet/lifestyle tip...",
+    "🟢 👨‍⚕️ Doctor advice..."
+  ],
+  "extractedHealthData": {
+    "bloodGroup": null,
+    "hemoglobin": null,
+    "wbc": null,
+    "detectedAllergies": [],
+    "currentMedications": []
+  },
+  "specialFlags": {
+    "anemia": false,
+    "infection": false,
+    "kidneyIssue": false,
+    "liverIssue": false,
+    "diabetesRisk": false
+  },
+  "reportTypeDetected": "CBC|LFT|KFT|Lipid Profile|Sugar|X-Ray|Prescription|ECG|Unknown"
 }
 ```
+
+**AI Prompt Format Notes:**
+
+- `plainSummary`: Hinglish (Hindi + English mix) with emoji prefix required on each line
+- Severity emojis: 🟢 (normal), 🟡 (mild concern), 🔴 (serious issue)
+- Optional: 💡 (diet tip), 👨‍⚕️ (doctor advice) — must still follow emoji rule
+- Example: "🟡 💡 Pani zyada piyen, oily khana avoid karein"
+- No medical jargon — explain simply and conversationally
+- Return exactly 4–6 lines; empty arrays when no items found (never null for array fields)
+
+````
 
 **Gemini prompt contract — `buildHealthProfile` expects back:**
 
@@ -295,19 +344,24 @@ POST  /api/user/profile/picture  → uploadPicture()     — Cloudinary upload �
   "trends": {},
   "quickSummary": { "criticalAlerts": [], "shortSummary": "" }
 }
-```
+````
 
 ---
 
 ## BACKGROUND JOBS
 
-### `processReport.js` → `processReportInBackground(reportId, userId)`
+### `processReport.js` → `processReportInBackground(reportId, cloudinaryUrl, fileType, userId)`
 
-1. Set `report.aiStatus = 'processing'`
-2. Call `analyzeReport(report)` from geminiService
-3. Save result to `report.aiSummary`, set `aiStatus = 'done'`
-4. On error: set `aiStatus = 'failed'`, save error to `report.aiError`
-5. Trigger `updateHealthProfileAI(userId)`
+1. Set `report.aiStatus = 'processing'`, clear `aiError`
+2. Call `analyzeReport(cloudinaryUrl, fileType)` from geminiService
+3. Guard: if aiResult is null/undefined, set `aiStatus = 'failed'`, throw error (will be caught and logged)
+4. Normalize `plainSummary` to array of strings (handle raw string, array, or empty)
+5. Save to `report.aiSummary` with fields: `testTable`, `plainSummary`, `extractedHealthData`, `reportTypeDetected`, `generatedAt`
+6. Set `aiStatus = 'completed'`, clear `aiError`
+7. Non-blocking: Trigger `updateHealthProfileAI(userId)` to consolidate all completed reports into health profile
+8. On any error: catch, log, set `aiStatus = 'failed'`, save error message to `aiError`
+
+**Important:** This is a background job (fire-and-forget) — it does NOT return HTTP responses. No `res.status()` calls here.
 
 ### `updateHealthProfile.js`
 
@@ -379,6 +433,54 @@ PORT                    Server port (default: 5000)
 
 ---
 
+## RECENT UPDATES (March 2026)
+
+### AI/Gemini Improvements
+
+- ✅ **Enhanced plainSummary format**: Updated Gemini prompt to return Hinglish (Hindi + English) summaries with emoji prefixes
+  - Severity emojis: 🟢 (normal) · 🟡 (mild concern) · 🔴 (serious issue)
+  - Optional secondary emojis: 💡 (diet/lifestyle tip) · 👨‍⚕️ (doctor advice)
+  - Example: "🟡 💡 Pani zyada piyen, oily khana reduce karein"
+  - Returns exactly 4–6 strings, no medical jargon
+
+- ✅ **reportTypeDetected field**: Added to `aiSummary` to auto-detect report category (CBC, LFT, KFT, Lipid Profile, Sugar, X-Ray, Prescription, ECG, Unknown)
+
+- ✅ **Error handling fixes in processReport.js**:
+  - Removed invalid `res.status()` calls (background job context)
+  - Proper null-check guard on `aiResult`
+  - Normalized `plainSummary` array handling
+
+- ✅ **Schema update**: `reportSchema.aiSummary` now includes `reportTypeDetected` field (String, default: "Unknown")
+
+### Frontend Improvements
+
+### Frontend Improvements
+
+- ✅ **Navigation buttons**: Added Home button (→ /home) on MyAppointment, DoctorList, and HealthProfile pages, positioned right of Back button
+- ✅ **Mobile table scrolling**: Fixed ReportDetails table overflow by adding `overflow-x: auto` to `.rd-test-table-wrap`
+
+- ✅ **AuthProvider.jsx — JSON parse error fix**:
+  - Added try-catch block around `JSON.parse(localStorage.getItem("user"))`
+  - Added explicit check: `saved !== "undefined"` to handle cases where localStorage contains the string `"undefined"`
+  - Returns `null` safely if JSON parsing fails, preventing app crash on startup
+  - Logs error to console for debugging
+
+- ✅ **PatientDetails.jsx — Lab values object rendering fix**:
+  - Lab values from Gemini AI can be objects with shape `{ value, unit, referenceRange, lastUpdated, status }`
+  - Updated rendering to safely handle both object and primitive values
+  - Extracts and displays as `"{value} {unit}"` when object, otherwise displays primitive directly
+  - Prevents "Objects are not valid as a React child" error
+
+- ✅ **App.jsx — Route protection for role-based access**:
+  - Implemented `ProtectedRoute` wrapper on sensitive routes
+  - Doctor-only routes (`/doctor/home`, `/doctor/patient/:appointmentId`) now require `role === "doctor"` token
+  - Patient routes wrapped with basic `ProtectedRoute` requiring valid token
+  - Redirects to login if no token; redirects to home if wrong role
+  - Prevents 403/400 API errors from unauthorized role access
+  - Returns 403 (Forbidden) when non-doctor user attempts doctor endpoints (caught by frontend before API call)
+
+---
+
 ## WHAT DOES NOT EXIST YET (Planned)
 
 - [ ] Prescription manager (GPT-4o Vision + Twilio reminders) — not yet built
@@ -391,4 +493,4 @@ PORT                    Server port (default: 5000)
 
 ---
 
-_Last updated: 2026 · DelhiMed Backend · Aashay Gupta_
+_Last updated: 28 March 2026 · DelhiMed Backend · Aashay Gupta_

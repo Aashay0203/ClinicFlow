@@ -1,0 +1,411 @@
+/* ============================================
+   DoctorHome — dh-* namespace
+   ============================================ */
+
+.dh-root {
+    min-height: 100vh;
+    background: var(--bg, #e8ecee);
+    font-family: "Nunito", sans-serif;
+}
+
+/* ── Top Bar ─────────────────────────────── */
+
+.dh-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 14px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.dh-topbar-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.dh-doctor-name {
+    font-family: "Urbanist", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #010101;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.dh-doctor-spec {
+    font-size: 12px;
+    color: #7a8799;
+    font-weight: 600;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.dh-topbar-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.dh-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1.5px solid #dde3ea;
+    background: #f6f8fa;
+    color: #7a8799;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dh-icon-btn:hover {
+    background: #dce9ff;
+    color: #3e7df5;
+    border-color: #3e7df5;
+}
+
+.dh-icon-btn.dh-logout-btn:hover {
+    background: #fff0f0;
+    color: #d94f4f;
+    border-color: #d94f4f;
+}
+
+.dh-icon-svg {
+    font-size: 18px !important;
+}
+
+/* ── Layout ──────────────────────────────── */
+
+.dh-layout {
+    padding: 20px;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Queue Card ──────────────────────────── */
+
+.dh-queue-card {
+    background: linear-gradient(135deg, #3e7df5 0%, #2d62d4 100%);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 12px 40px rgba(62, 125, 245, 0.28);
+}
+
+.dh-queue-date {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 700;
+    margin: 0 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.dh-queue-stats {
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.dh-stat {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.dh-stat-value {
+    font-family: "Urbanist", sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.dh-stat-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dh-stat-divider {
+    width: 1px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.18);
+    flex-shrink: 0;
+}
+
+.dh-next-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1.5px solid rgba(255, 255, 255, 0.28);
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.2px;
+}
+
+.dh-next-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+}
+
+.dh-next-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.dh-next-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.dh-next-success {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    text-align: center;
+}
+
+/* ── Main Section ────────────────────────── */
+
+.dh-main {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.dh-section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dh-section-title {
+    font-family: "Urbanist", sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: #010101;
+    margin: 0;
+}
+
+.dh-count-badge {
+    background: #dce9ff;
+    color: #3e7df5;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: "Urbanist", sans-serif;
+}
+
+/* ── States ──────────────────────────────── */
+
+.dh-error {
+    background: #fff0f0;
+    color: #d94f4f;
+    border-radius: 14px;
+    padding: 13px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(217, 79, 79, 0.15);
+}
+
+.dh-loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7a8799;
+    font-size: 14px;
+    font-weight: 600;
+    background: #ffffff;
+    border-radius: 18px;
+}
+
+.dh-empty {
+    text-align: center;
+    padding: 40px 20px;
+    background: #ffffff;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dh-empty-icon {
+    font-size: 32px;
+}
+
+.dh-empty p {
+    color: #7a8799;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ── Appointment List ────────────────────── */
+
+.dh-appt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dh-appt-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1.5px solid #dde3ea;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dh-appt-card:hover {
+    border-color: #3e7df5;
+    box-shadow: 0 6px 20px rgba(62, 125, 245, 0.1);
+    transform: translateY(-1px);
+}
+
+.dh-appt-card:active {
+    transform: translateY(0);
+}
+
+.dh-appt-token {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: #dce9ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dh-token-num {
+    font-family: "Urbanist", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #3e7df5;
+}
+
+.dh-appt-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dh-patient-name {
+    font-family: "Urbanist", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #010101;
+    margin: 0 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dh-appt-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #7a8799;
+    font-weight: 600;
+    margin: 0;
+}
+
+.dh-time-icon {
+    font-size: 13px !important;
+    color: #7a8799;
+    flex-shrink: 0;
+}
+
+.dh-appt-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.dh-pay-badge {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-family: "Urbanist", sans-serif;
+}
+
+.dh-pay-paid {
+    background: #d5eab3;
+    color: #3a7d11;
+}
+
+.dh-pay-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.dh-appt-status {
+    font-size: 11px;
+    color: #7a8799;
+    font-weight: 600;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (min-width: 640px) {
+    .dh-layout {
+        padding: 24px 32px;
+        max-width: 760px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .dh-layout {
+        flex-direction: row;
+        align-items: flex-start;
+        max-width: 980px;
+        padding: 28px 40px;
+        gap: 28px;
+    }
+
+    .dh-sidebar {
+        width: 290px;
+        flex-shrink: 0;
+    }
+
+    .dh-queue-card {
+        position: sticky;
+        top: 80px;
+    }
+
+    .dh-main {
+        flex: 1;
+        min-width: 0;
+    }
+}

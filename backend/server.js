@@ -30,12 +30,12 @@ const connectMongoDb = async () => {
 }
 
 app.use("/api/auth", authRoute);
-app.use("/api/appointment", appointmentRoute);
-app.use("/api/doctor", doctorRoute);
-app.use("/api/queue", queueRoute);
+app.use("/api/appointments", appointmentRoute);
+app.use("/api/doctors", doctorRoute);
+app.use("/api/queues", queueRoute);
 app.use("/api/payment", paymentRoute);
-app.use("/api/medication", medicationRoutes);
-app.use("/api/report", reportRoute);
+app.use("/api/medications", medicationRoutes);
+app.use("/api/reports", reportRoute);
 app.use("/api/user", userRoute);
 app.use("/api/healthProfile", healthProfileRoute);
 

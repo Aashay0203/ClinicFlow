@@ -31,6 +31,10 @@ const DocterSchema = new mongoose.Schema({
         type: Number,
         default: 500,
     },
+    role: {
+        type: String,
+        default: "doctor"
+    }
 })
 
 export default mongoose.model("Doctor", DocterSchema);

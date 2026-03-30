@@ -3,7 +3,7 @@ import Queue from "../models/queueSchema.js";
 import Appointment from "../models/appointmentSchema.js";
 
 /**
- * PUT /queue/:doctorId/next
+ * PUT /api/queues/next
  * Doctor advances the queue
  */
 export const moveQueueNext = async (req, res) => {

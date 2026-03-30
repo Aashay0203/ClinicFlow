@@ -43,7 +43,7 @@ export default function MyAppointment() {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const res = await instance.get("/appointment/my-appointements");
+      const res = await instance.get("/appointments/my-appointements");
       setMyAppointments(res.data.appointments);
     };
     fetchAppointments();
